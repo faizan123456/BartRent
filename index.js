@@ -6,6 +6,7 @@ const keys = require("./config/keys");
 
 require("./models/User");
 require("./services/passport");
+require("./services/fb-passport");
 
 mongoose.connect(keys.mongoURI);
 
@@ -21,7 +22,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require("./routes/authRoutes")(app);
-
+require("./routes/authFBRputes")(app);
 app.get("/", (req, res) => {
   res.send({ hi: "There" });
 });

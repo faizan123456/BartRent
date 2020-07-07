@@ -9,9 +9,14 @@ class Header extends Component {
         return;
       case false:
         return (
-          <li>
-            <a href="/auth/google">Login With Google</a>
-          </li>
+          <React.Fragment>
+            <li key="1">
+              <a href="/auth/google">Login With Google</a>
+            </li>
+            <li key="2">
+              <a href="/auth/facebook">Login With facebook</a>
+            </li>
+          </React.Fragment>
         );
       default:
         return (
