@@ -52,18 +52,15 @@ app.use(passport.session());
 mongoose.connect(keys.mongoURI);
 mongoose.set("debug", true);
 
-// require("./models/User");
-// require("./services/passport");
-// require("./services/fb-passport");
-
-//local auth
 require("./models/Users");
+require("./services/google-passport");
+require("./services/fb-passport");
 require("./services/local-passport");
 app.use(require("./routes"));
 //local auth
 
-require("./routes/authRoutes")(app);
-require("./routes/authFBRputes")(app);
+require("./routes/authGoogleRoutes")(app);
+require("./routes/authFBRoutes")(app);
 
 //Error handlers & middlewares
 if (!isProduction) {
