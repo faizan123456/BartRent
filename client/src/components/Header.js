@@ -16,6 +16,12 @@ class Header extends Component {
             <li key="2">
               <a href="/auth/facebook">Login With facebook</a>
             </li>
+            <li key="3">
+              <a href="/login">Login</a>
+            </li>
+            <li key="4">
+              <a href="/register">Register</a>
+            </li>
           </React.Fragment>
         );
       default:
