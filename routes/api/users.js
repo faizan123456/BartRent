@@ -28,12 +28,16 @@ router.post("/", auth.optional, (req, res, next) => {
   }
 
   const finalUser = new Users(user);
+  const Token = finalUser.generateJWT();
+  console.log(Token);
   // finalUser.email = user.email;
   finalUser.setPassword(user.password);
 
   return finalUser
     .save()
-    .then(() => res.json({ user: finalUser.toAuthJSON() }));
+    .then(() =>
+      res.header("x-auth-token", Token).json({ user: finalUser.toAuthJSON() })
+    );
 });
 
 //POST login route (optional, everyone has access)
@@ -80,10 +84,10 @@ router.post("/login", auth.optional, (req, res, next) => {
 
 //GET current route (required, only authenticated users have access)
 // auth.required,
-router.get("/saqib", (req, res) => {
-  console.log("Hello Saqib");
-  res.status(200).send("Hii G ");
-});
+// router.get("/saqib", (req, res) => {
+//   console.log("Hello Saqib");
+//   res.status(200).send("Hii G ");
+// });
 router.get("/current", auth.required, (req, res) => {
   console.log("auth.required");
   const {

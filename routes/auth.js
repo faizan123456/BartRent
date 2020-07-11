@@ -5,13 +5,9 @@ const getTokenFromHeaders = req => {
     headers: { authorization }
   } = req;
   // console.log(headers);
-
   // console.log("JWT", req.headers.authorization);
   // var auth = authorization;
-  // var value = auth.split(" ")[0];
-  // console.log("split value", value === "Token");
-  // console.log("auth", auth);
-  // console.log("split", authorization.split(" ")[0] === "Token");
+
   if (authorization && authorization.split(" ")[0] === "Token") {
     console.log("inside if ");
     return authorization.split(" ")[1];

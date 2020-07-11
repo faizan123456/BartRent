@@ -22,6 +22,9 @@ class Header extends Component {
             <li key="4">
               <a href="/register">Register</a>
             </li>
+            <li key="5">
+              <a href="/current">Get Current User</a>
+            </li>
           </React.Fragment>
         );
       default:

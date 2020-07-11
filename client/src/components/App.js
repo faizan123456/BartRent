@@ -6,7 +6,7 @@ import Header from "./Header";
 import Landing from "./Landing";
 import LoginForm from "./Login";
 import RegisterForm from "./Registration";
-
+import CurrentUser from "./CurrentUser";
 const Dasboard = () => <h2>Dasboard</h2>;
 const SurveyNew = () => <h2>SurveyNew</h2>;
 
@@ -24,6 +24,7 @@ class App extends Component {
           <Route path="/surveys/new" component={SurveyNew} />
           <Route path="/login" component={LoginForm} />
           <Route path="/register" component={RegisterForm} />
+          <Route path="/current" component={CurrentUser} />
         </BrowserRouter>
       </div>
     );

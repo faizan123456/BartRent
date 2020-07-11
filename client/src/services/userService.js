@@ -4,9 +4,12 @@ import { apiUrl } from "../config.json";
 const apiEndpoint = apiUrl + "/users";
 
 export function register(user) {
+  console.log("I am Registered method ", user, apiEndpoint);
   return http.post(apiEndpoint, {
-    email: user.username,
-    password: user.password,
-    name: user.name,
+    user: {
+      email: user.username,
+      password: user.password
+      // name:user.name
+    }
   });
 }

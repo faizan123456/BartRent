@@ -1,8 +1,15 @@
 import React from "react";
-import Form from "./common/form";
+
 import Joi from "joi-browser";
+import { toast } from "react-toastify";
+import { Redirect } from "react-router-dom";
+
+import auth from "../services/authService";
+// import * as auth from "../services/authService";
+
+import Form from "./common/form";
+
 class LoginForm extends Form {
-  // username=React.createRef();
   state = {
     data: {
       username: "",
@@ -10,6 +17,7 @@ class LoginForm extends Form {
     },
     errors: {}
   };
+
   schema = {
     username: Joi.string()
       .required()
@@ -18,27 +26,39 @@ class LoginForm extends Form {
       .required()
       .label("Password")
   };
-  // componentDidMount(){
-  //     this.username.current.focus();
-  // }
 
-  doSubmit = () => {
-    // call the server ->save the Changes
-    console.log("Submited");
+  doSubmit = async () => {
+    const { username, password } = this.state.data;
+    try {
+      await auth.login(username, password);
+      const { state } = this.props.location;
+      window.location = state ? state.from.pathname : "/";
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        const errors = { ...this.state.errors };
+        errors.username = error.response.data;
+        this.setState({ errors });
+        toast.error("Your credentials are not correct, please try again.");
+      }
+    }
   };
+
   render() {
+    if (auth.getCurrentUser()) return <Redirect to="/" />;
+
     return (
       <div>
-        <h1>LogIN</h1>
+        <h1>Login</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="container">
             {this.renderInput("Username", "username")}
             {this.renderInput("Password", "password", "password")}
-            {this.renderButton("label")}
+            {this.renderButton("Login")}
           </div>
         </form>
       </div>
     );
   }
 }
+
 export default LoginForm;
