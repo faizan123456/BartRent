@@ -3,13 +3,15 @@ import { apiUrl } from "../config.json";
 
 const apiEndpoint = apiUrl + "/users";
 
-export function register(user) {
-  console.log("I am Registered method ", user, apiEndpoint);
-  return http.post(apiEndpoint, {
+export async function register(user) {
+  // console.log("I am Registered method ", user, apiEndpoint);
+  const result = await http.post(apiEndpoint, {
     user: {
       email: user.username,
-      password: user.password
-      // name:user.name
+      password: user.password,
+      name: user.name
     }
   });
+  console.log("registred post req", result);
+  return result;
 }

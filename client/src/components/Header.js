@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Logout from "./Logout";
 class Header extends Component {
   state = {};
   renderContent() {
@@ -25,18 +26,23 @@ class Header extends Component {
             <li key="5">
               <a href="/current">Get Current User</a>
             </li>
+            <li key="12">
+              <a href="/logout">Logout</a>
+            </li>
           </React.Fragment>
         );
       default:
         return (
-          <li>
-            <a href="/api/logout">Logout</a>
-          </li>
+          <React.Fragment>
+            <li key="11">
+              <a href="/api/logout">Logout Social</a>
+            </li>
+          </React.Fragment>
         );
     }
   }
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <nav>
         <div className="nav-wrapper">

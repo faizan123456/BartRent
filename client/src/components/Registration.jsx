@@ -7,7 +7,7 @@ import auth from "../services/authService";
 class RegisterForm extends Form {
   state = {
     data: {
-      // name: "",
+      name: "",
       username: "",
       password: ""
     },
@@ -15,9 +15,9 @@ class RegisterForm extends Form {
   };
 
   schema = {
-    // name: Joi.string()
-    //   .required()
-    //   .label("Name"),
+    name: Joi.string()
+      .required()
+      .label("Name"),
     username: Joi.string()
       .required()
       .email()
@@ -32,7 +32,7 @@ class RegisterForm extends Form {
     // Call the server
     try {
       const response = await userService.register(this.state.data);
-
+      //   console.log("Register form response obj", response);
       auth.loginWithJwt(response.headers["x-auth-token"]);
       window.location = "/";
     } catch (ex) {
@@ -54,7 +54,7 @@ class RegisterForm extends Form {
         <h1>Register</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="container">
-            {/* {this.renderInput("Name", "name")} */}
+            {this.renderInput("Name", "name")}
             {this.renderInput("Username", "username")}
             {this.renderInput("Password", "password", "password")}
             {this.renderButton("Register")}

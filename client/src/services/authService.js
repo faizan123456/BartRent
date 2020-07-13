@@ -7,7 +7,7 @@ const apiEndpoint = apiUrl + "/users/login";
 http.setJwt(getJwt());
 
 export async function login(email, password) {
-  console.log("I am Login method ", email, password, apiEndpoint);
+  // console.log("I am Login method ", email, password, apiEndpoint);
   const { data: jwt } = await http.post(
     apiEndpoint,
     // { email, password }
@@ -19,10 +19,12 @@ export async function login(email, password) {
       }
     }
   );
-  localStorage.setItem("token", jwt);
+  localStorage.setItem("token", jwt.user.token);
+  console.log("LLoogin", jwt.user.token);
 }
 
 export function loginWithJwt(jwt) {
+  console.log("come into the login method of jwt ", jwt);
   localStorage.setItem("token", jwt);
 }
 
@@ -36,11 +38,11 @@ export function getCurrentUser() {
     const jwt = localStorage.getItem("token");
     console.log("is token here........", jwt);
 
-    axios.get("http://localhost:5000/api/users/current", {
-      headers: {
-        Authorization: "Token " + jwt //the token is a variable which holds the token
-      }
-    });
+    // axios.get("http://localhost:5000/api/users/current", {
+    //   headers: {
+    //     Authorization: "Token " + jwt //the token is a variable which holds the token
+    //   }
+    // });
     return jwtDecode(jwt);
   } catch (ex) {
     return null;

@@ -5,6 +5,7 @@ import * as actions from "../actions";
 import Header from "./Header";
 import Landing from "./Landing";
 import LoginForm from "./Login";
+import Logout from "./Logout";
 import RegisterForm from "./Registration";
 import CurrentUser from "./CurrentUser";
 const Dasboard = () => <h2>Dasboard</h2>;
@@ -25,6 +26,7 @@ class App extends Component {
           <Route path="/login" component={LoginForm} />
           <Route path="/register" component={RegisterForm} />
           <Route path="/current" component={CurrentUser} />
+          <Route path="/logout" component={Logout} />
         </BrowserRouter>
       </div>
     );

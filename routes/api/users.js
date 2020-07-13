@@ -6,11 +6,10 @@ const Users = mongoose.model("Users");
 
 //POST new user route (optional, everyone has access)
 router.post("/", auth.optional, (req, res, next) => {
-  console.log("comme inside route", req);
   const {
     body: { user }
   } = req;
-  console.log(req.body);
+
   if (!user.email) {
     return res.status(422).json({
       errors: {
@@ -18,7 +17,13 @@ router.post("/", auth.optional, (req, res, next) => {
       }
     });
   }
-
+  if (!user.name) {
+    return res.status(422).json({
+      errors: {
+        name: "is required"
+      }
+    });
+  }
   if (!user.password) {
     return res.status(422).json({
       errors: {
@@ -32,14 +37,17 @@ router.post("/", auth.optional, (req, res, next) => {
   console.log(Token);
   // finalUser.email = user.email;
   finalUser.setPassword(user.password);
+  finalUser.name = user.name;
 
-  return finalUser
-    .save()
-    .then(() =>
-      res.header("x-auth-token", Token).json({ user: finalUser.toAuthJSON() })
-    );
+  return finalUser.save().then(() =>
+    res
+      .header("x-auth-token", Token)
+      .header("access-control-expose-headers", "x-auth-token")
+      .json({ user: finalUser.toAuthJSON() })
+  );
 });
-
+// // .send()
+// .header("x-auth-token", Token)
 //POST login route (optional, everyone has access)
 router.post("/login", auth.optional, (req, res, next) => {
   const {
@@ -73,6 +81,7 @@ router.post("/login", auth.optional, (req, res, next) => {
       if (passportUser) {
         const user = passportUser;
         user.token = passportUser.generateJWT();
+        console.log(user.token);
 
         return res.json({ user: user.toAuthJSON() });
       }

@@ -8,6 +8,7 @@ const UsersSchema = new Schema({
   googleId: String,
   facebookId: String,
   email: String,
+  name: String,
   hash: String,
   salt: String
 });
@@ -35,6 +36,7 @@ UsersSchema.methods.generateJWT = function() {
     {
       email: this.email,
       id: this._id,
+      name: this.name,
       exp: parseInt(expirationDate.getTime() / 1000, 10)
     },
     "secret"
@@ -45,6 +47,7 @@ UsersSchema.methods.toAuthJSON = function() {
   return {
     _id: this._id,
     email: this.email,
+    name: this.name,
     token: this.generateJWT()
   };
 };
