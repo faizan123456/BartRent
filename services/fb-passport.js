@@ -24,6 +24,7 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
       User.findOne({ facebookId: profile.id }).then(existingUser => {
+        console.log(profile);
         if (existingUser) {
           //return null or existing user obj.
           //We Already Have Record with the Given User.
@@ -31,7 +32,9 @@ passport.use(
         } else {
           //Don't have record in Db.create New User
           new User({
-            facebookId: profile.id
+            facebookId: profile.id,
+            name: profile.displayName,
+            email: profile.emails[0].value
           })
             .save()
             .then(user => done(null, user));

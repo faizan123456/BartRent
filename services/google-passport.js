@@ -5,13 +5,13 @@ const mongoose = require("mongoose");
 
 const User = mongoose.model("Users");
 
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
+// passport.serializeUser((user, done) => {
+//   done(null, user.id);
+// });
 
-passport.deserializeUser((id, done) => {
-  User.findById(id).then(user => done(null, user));
-});
+// passport.deserializeUser((id, done) => {
+//   User.findById(id).then(user => done(null, user));
+// });
 
 passport.use(
   new GoogleStrategy(
@@ -30,10 +30,15 @@ passport.use(
       } else {
         //Don't have record in Db.create New User
         const user = await new User({
-          googleId: profile.id
+          googleId: profile.id,
+          email: profile.emails[0].value,
+          name: profile.displayName
         }).save();
         done(null, user);
       }
     }
   )
 );
+
+// UnhandledPromiseRejectionWarning: ValidationError: Users validation
+// failed: name: Cast to string failed for value "{ familyName: 'Mehmood', givenName: 'Saqib' }" at path "name"

@@ -53,6 +53,10 @@ export function getJwt() {
   return localStorage.getItem("token");
 }
 
+// export function setJwt() {
+//   return localStorage.setItem("token", jwt.user.token);
+// }
+
 export default {
   login,
   loginWithJwt,

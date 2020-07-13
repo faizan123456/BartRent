@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Logout from "./Logout";
+import auth from "../services/authService";
 class Header extends Component {
   state = {};
+
   renderContent() {
     switch (this.props.auth) {
       case null:
@@ -34,6 +36,9 @@ class Header extends Component {
       default:
         return (
           <React.Fragment>
+            <li key="12">
+              <a href="/current">Current User</a>
+            </li>
             <li key="11">
               <a href="/api/logout">Logout Social</a>
             </li>
@@ -50,7 +55,7 @@ class Header extends Component {
             to={this.props.auth ? "/surveys" : "/"}
             className="left brand-logo"
           >
-            Emaily
+            Barter And Rental Managment
           </Link>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             {/* <li>

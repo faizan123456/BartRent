@@ -12,6 +12,10 @@ class CurrentUser extends Component {
     };
   }
   componentDidMount() {
+    // auth.loginWithJwt(response.headers["x-auth-token"]);
+    // localStorage.setItem("token", jwt.user.token);
+
+    auth.getJwt();
     const user = auth.getCurrentUser();
     const email = user.email;
     const id = user.id;
