@@ -5,13 +5,7 @@ const mongoose = require("mongoose");
 const Users = mongoose.model("Users");
 
 module.exports = app => {
-  // app.get(
-  //   "/auth/google",
-  //   passport.authenticate("google", {
-  //     scope: ["profile", "email"]
-  //   })
-  // );
-
+  // genuine
   // app.get(
   //   "/auth/google/callback",
   //   passport.authenticate("google", { failureRedirect: "/api/login" }),
@@ -20,8 +14,31 @@ module.exports = app => {
   //   }
   // );
 
+  // app.get(
+  //   "/auth/google/callback",
+  //   passport.authenticate("google", {
+  //     successRedirect: "/auth/google/success",
+  //     failureRedirect: "/auth/google/failure"
+  //   }),
+  //   (req, res) => {
+  //     res.redirect("/surveys");
+  //   }
+  // );
+  // app.get("/auth/google/success", (req, res) => {
+  //   authService.signToken(req, res);
+  // });
+  // const tokentype = authService.getName();
   app.get("/api/current_user", (req, res) => {
-    res.send(req.user);
+    console.log("current user why not", authService.getName());
+    // authService.getName;
+    // const tokentype = authService.getName;
+    // res.send("hruu hasdhfjas dfjasdjfjasjdfj", authService.getName());
+    // var token='';
+    const token = authService.getName();
+    res
+      .header("x-auth-token", token)
+      .header("access-control-expose-headers", "x-auth-token")
+      .json({ token });
   });
 
   app.get("/api/logout", (req, res) => {
@@ -42,31 +59,22 @@ module.exports = app => {
   );
 
   // callback url upon successful google authentication
-
   app.get(
     "/auth/google/callback/",
     passport.authenticate("google", { session: false }),
     (req, res) => {
-      // const user = req.user;
-      // console.log("Gooogle User ki id", user);
       authService.signToken(req, res);
-      // console.log("fron Sign Toke method", token);
-      // const finalUser = new User();
-      // console.log("final user", finalUser);
-      // const Token = finalUser.generateJWT();
-      // console.log("token via google", Token);
-      // res.json({ user: finalUser.toAuthJSON() });
     }
   );
 
-  // route to check token with postman.
-  // using middleware to check for authorization header
-  //   app.get("/verify", authService.checkTokenMW, (req, res) => {
-  //     authService.verifyToken(req, res);
-  //     if (null === req.authData) {
-  //       res.sendStatus(403);
-  //     } else {
-  //       res.json(req.authData);
-  //     }
-  //   });
+  app.get("/verify", authService.checkTokenMW, (req, res) => {
+    console.log("i am in verify method");
+    authService.verifyToken(req, res);
+    if (null === req.authData) {
+      console.log("jsadjfiasi");
+      res.sendStatus(403);
+    } else {
+      res.json(req.authData);
+    }
+  });
 };

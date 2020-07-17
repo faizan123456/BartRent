@@ -22,7 +22,9 @@ passport.use(
       proxy: true
     },
     async (accessToken, refreshToken, profile, done) => {
+      console.log("google access token", accessToken);
       const existingUser = await User.findOne({ googleId: profile.id });
+
       if (existingUser) {
         //return null or existing user obj.
         //We Already Have Record with the Given User.
@@ -34,6 +36,8 @@ passport.use(
           email: profile.emails[0].value,
           name: profile.displayName
         }).save();
+        // const Token = user.generateJWT();
+        // console.log(Token);
         done(null, user);
       }
     }

@@ -39,15 +39,28 @@ if (!isProduction) {
 }
 
 // google facebook
-app.use(
-  cookieSession({
-    maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [keys.cookieKey]
-  })
-);
+// app.use(
+//   cookieSession({
+//     maxAge: 30 * 24 * 60 * 60 * 1000,
+//     keys: [keys.cookieKey]
+//   })
+// );
 
+app.use(function(req, res, next) {
+  let allowedOrigins = ["*"]; // list of url-s
+  let origin = req.headers.origin;
+  if (allowedOrigins.indexOf(origin) > -1) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Expose-Headers", "Content-Disposition");
+  next();
+});
 app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.session());
 
 mongoose.connect(keys.mongoURI);
 mongoose.set("debug", true);

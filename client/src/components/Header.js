@@ -1,20 +1,26 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import http from "../services/httpService";
 import Logout from "./Logout";
-import auth from "../services/authService";
+import auth, { getJwt } from "../services/authService";
 class Header extends Component {
   state = {};
 
   renderContent() {
-    switch (this.props.auth) {
+    const jwt = http.setJwt(getJwt());
+    switch (
+      false //this.props.auth
+    ) {
       case null:
         return;
       case false:
         return (
           <React.Fragment>
             <li key="1">
-              <a href="/auth/google">Login With Google</a>
+              <a href="/auth/google" onClick={jwt}>
+                Login With Google
+              </a>
             </li>
             <li key="2">
               <a href="/auth/facebook">Login With facebook</a>

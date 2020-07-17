@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import auth from "../services/authService";
-
+import g_auth from "../services/currentUser";
+import http from "../services/httpService";
 class CurrentUser extends Component {
   constructor(props) {
     super(props);
@@ -12,11 +13,26 @@ class CurrentUser extends Component {
     };
   }
   componentDidMount() {
-    // auth.loginWithJwt(response.headers["x-auth-token"]);
-    // localStorage.setItem("token", jwt.user.token);
+    // http.get("http://localhost:3000/api/current_user").then(res => {
+    //   console.log("res", res);
+    //   // const token = res.data.token;
+    //   const token = res.headers["x-auth-token"];
+    //   console.log("this one", token);
+    //   auth.loginWithJwt(token);
+    // });
+
+    // const res = await http.get("http://localhost:3000/api/current_user");
+    // console.log("res", res);
+    // // const token = res.data.token;
+    // const token = res.headers["x-auth-token"];
+    // console.log("this one", token);
+    // auth.loginWithJwt(token);
+
+    // g_auth.getCurrent();
 
     auth.getJwt();
     const user = auth.getCurrentUser();
+
     const email = user.email;
     const id = user.id;
     const name = user.name;

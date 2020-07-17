@@ -6,6 +6,14 @@ const apiEndpoint = apiUrl + "/users/login";
 
 http.setJwt(getJwt());
 
+export async function getCurrent(email, password) {
+  // console.log("I am Login method ", email, password, apiEndpoint);
+  const { data: jwt } = await http.get(
+    "http://localhost:3000/api/current_user"
+  );
+  localStorage.setItem("token", jwt.user.token);
+  console.log("get GGGGGGG", jwt.user.token);
+}
 export async function login(email, password) {
   // console.log("I am Login method ", email, password, apiEndpoint);
   const { data: jwt } = await http.post(
@@ -22,7 +30,7 @@ export async function login(email, password) {
   localStorage.setItem("token", jwt.user.token);
   console.log("LLoogin", jwt.user.token);
 }
-
+//  export function gtoken()
 export function loginWithJwt(jwt) {
   console.log("come into the login method of jwt ", jwt);
   localStorage.setItem("token", jwt);
