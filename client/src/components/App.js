@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import * as actions from "../actions";
 import Header from "./Header";
 import Landing from "./Landing";
 import LoginForm from "./Login";
@@ -27,6 +26,7 @@ class App extends Component {
     // const user = auth.getCurrentUser();
     // g_auth.getCurrent();
   }
+
   render() {
     return (
       <div>
@@ -43,7 +43,14 @@ class App extends Component {
       </div>
     );
   }
+  componentDidUpdate() {
+    auth.getCurrent();
+    const { setCurrentUser } = this.props;
+    const user = auth.getCurrentUser();
+    setCurrentUser(user);
+  }
 }
+
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
