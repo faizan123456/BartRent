@@ -6,14 +6,24 @@ const apiEndpoint = apiUrl + "/users/login";
 
 http.setJwt(getJwt());
 
-export async function getCurrent(email, password) {
-  // console.log("I am Login method ", email, password, apiEndpoint);
-  const { data: jwt } = await http.get(
-    "http://localhost:3000/api/current_user"
-  );
-  localStorage.setItem("token", jwt.user.token);
-  console.log("get GGGGGGG", jwt.user.token);
+export async function getCurrent() {
+  const res = await http.get("http://localhost:3000/api/current_user");
+  console.log("res", res);
+  // const token = res.data.token;
+  const token = res.headers["x-auth-token"];
+  console.log("this one", token);
+
+  loginWithJwt(token);
 }
+
+// export async function getCurrent(email, password) {
+//   // console.log("I am Login method ", email, password, apiEndpoint);
+//   const { data: jwt } = await http.get(
+//     "http://localhost:3000/api/current_user"
+//   );
+//   localStorage.setItem("token", jwt.user.token);
+//   console.log("get GGGGGGG", jwt.user.token);
+// }
 export async function login(email, password) {
   // console.log("I am Login method ", email, password, apiEndpoint);
   const { data: jwt } = await http.post(
@@ -70,5 +80,6 @@ export default {
   loginWithJwt,
   logout,
   getCurrentUser,
-  getJwt
+  getJwt,
+  getCurrent
 };

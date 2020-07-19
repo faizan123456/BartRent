@@ -62,7 +62,9 @@ exports.signToken = (req, res) => {
       } else {
         _jwtSign = token;
         // console.log("value of token", _jwtSign);
-        res.json({ token });
+        // res.json({ token });
+        res.redirect("/");
+
         // res.json(token);
       }
       //   console.log("fazool token", token);
