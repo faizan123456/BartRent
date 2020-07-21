@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import { connect } from "react-redux";
 import Header from "./Header";
 import Landing from "./Landing";
 import LoginForm from "./Login";
@@ -9,18 +8,36 @@ import RegisterForm from "./Registration";
 import CurrentUser from "./CurrentUser";
 import { setCurrentUser } from "../redux/user/user.action";
 
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "../redux/user/user.selector";
+
 import auth from "../services/authService";
 
 const Dasboard = () => <h2>Dasboard</h2>;
 const SurveyNew = () => <h2>SurveyNew</h2>;
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log("before setTime OUt", this.props.currentUser);
+    setTimeout(() => {
+      if (this.props.currentUser === null) {
+        const { setCurrentUser } = this.props;
+        const user = auth.getCurrentUser();
+
+        setCurrentUser(user);
+      }
+    }, 300);
+  }
   componentDidMount() {
     auth.getCurrent();
     const { setCurrentUser } = this.props;
     const user = auth.getCurrentUser();
+    console.log("user of component did mount", user);
+    // if (user !== null) {
     setCurrentUser(user);
-
+    // }
     // this.props.fetchUser();
 
     // const user = auth.getCurrentUser();
@@ -43,15 +60,13 @@ class App extends Component {
       </div>
     );
   }
-  componentDidUpdate() {
-    auth.getCurrent();
-    const { setCurrentUser } = this.props;
-    const user = auth.getCurrentUser();
-    setCurrentUser(user);
-  }
 }
 
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
-export default connect(null, mapDispatchToProps)(App);
+
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
+});
+export default connect(mapStateToProps, mapDispatchToProps)(App);

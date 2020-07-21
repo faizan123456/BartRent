@@ -47,6 +47,7 @@ export function loginWithJwt(jwt) {
 }
 
 export function logout() {
+  console.log(" I am logout ");
   localStorage.removeItem("token");
 }
 
