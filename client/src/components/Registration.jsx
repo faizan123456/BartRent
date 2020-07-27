@@ -5,17 +5,66 @@ import * as userService from "../services/userService";
 import auth from "../services/authService";
 
 class RegisterForm extends Form {
+  // {
+  //   _id: 1,
+  //   name: "Pak"
+  // },
+  // {
+  //   _id: 2,
+  //   name: "Ind"
+  // },
+  // {
+  //   _id: 3,
+  //   name: "US"
+  // },
+  // {
+  //   _id: 4,
+  //   name: "UK"
+  // }
   state = {
+    countries: [],
+    cities: [],
+    states: [],
     data: {
       name: "",
       username: "",
-      password: ""
+      password: "",
+      countryId: "",
+      cityId: "",
+      stateId: ""
     },
     errors: {}
   };
 
+  populateCountries = async () => {
+    const { data: countries } = await userService.getCountries();
+    this.setState({ countries });
+  };
+  populateStates = async () => {
+    const { data: states } = await userService.getStates();
+    this.setState({ states });
+  };
+  populateCities = async () => {
+    const { data: cities } = await userService.getCities();
+    this.setState({ cities });
+  };
+
+  async componentDidMount() {
+    await this.populateCountries();
+    await this.populateStates();
+    await this.populateCities();
+  }
   schema = {
     name: Joi.string()
+      .required()
+      .label("Name"),
+    countryId: Joi.string()
+      .required()
+      .label("Name"),
+    stateId: Joi.string()
+      .required()
+      .label("Name"),
+    cityId: Joi.string()
       .required()
       .label("Name"),
     username: Joi.string()
@@ -54,9 +103,20 @@ class RegisterForm extends Form {
         <h1>Register</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="container">
-            {this.renderInput("Name", "name")}
-            {this.renderInput("Username", "username")}
-            {this.renderInput("Password", "password", "password")}
+            {this.renderInput("name", "Name")}
+            {this.renderSelect("countryId", "Country", this.state.countries)}
+            {this.renderSelect("stateId", "State", this.state.states)}
+            {this.renderSelect("cityId", "City", this.state.cities)}
+            {/* <div class="input-field col s12">
+              <select id="" className="browser-default">
+                <option value="" />
+                <option value="1">Pak</option>
+                <option value="2">Ind</option>
+                <option value="3">Ban</option>
+              </select>
+            </div> */}
+            {this.renderInput("username", "Username")}
+            {this.renderInput("password", "Password", "password")}
             {this.renderButton("Register")}
           </div>
         </form>
