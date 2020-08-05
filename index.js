@@ -62,13 +62,15 @@ app.use(function(req, res, next) {
 app.use(passport.initialize());
 // app.use(passport.session());
 
-mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set("debug", true);
 
 require("./models/Users");
 require("./services/google-passport");
 require("./services/fb-passport");
 require("./services/local-passport");
+require('./models/proCat');
+require('./models/Product');
 app.use(require("./routes"));
 //local auth
 

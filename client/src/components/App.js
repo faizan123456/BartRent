@@ -4,8 +4,11 @@ import Header from "./Header";
 import Landing from "./Landing";
 import LoginForm from "./Login";
 import Logout from "./Logout";
+import NotFound from './notFound';
 import RegisterForm from "./Registration";
 import CurrentUser from "./CurrentUser";
+import ProductForm from "./ProductForm";
+import Products from "./Products";
 import { setCurrentUser } from "../redux/user/user.action";
 
 import { connect } from "react-redux";
@@ -13,6 +16,7 @@ import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../redux/user/user.selector";
 
 import auth from "../services/authService";
+import productDetail from "./productDetail";
 
 const Dasboard = () => <h2>Dasboard</h2>;
 const SurveyNew = () => <h2>SurveyNew</h2>;
@@ -51,8 +55,14 @@ class App extends Component {
           <Header />
           <Route exact path="/surveys" component={Dasboard} />
           <Route exact path="/" component={Landing} />
+          <Route path="/new-product" component={ProductForm} />
+          <Route path="/edit-product/:id" component={ProductForm} />
+          {/* <Route path="/product-detail/${product._id}" component={productDetail} /> */}
+          <Route exact path="/products" component={Products} />
+          <Route path="/product/:id" component={productDetail} />
           <Route path="/surveys/new" component={SurveyNew} />
           <Route path="/login" component={LoginForm} />
+          <Route path="/not-found" component={NotFound} />
           <Route path="/register" component={RegisterForm} />
           <Route path="/current" component={CurrentUser} />
           <Route path="/logout" component={Logout} />
