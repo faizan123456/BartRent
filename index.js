@@ -69,8 +69,16 @@ require("./models/Users");
 require("./services/google-passport");
 require("./services/fb-passport");
 require("./services/local-passport");
+<<<<<<< HEAD
 require('./models/proCat');
 require('./models/Product');
+=======
+require("./models/country");
+require("./models/state");
+// require("./models/district");
+require("./models/city");
+
+>>>>>>> b5cb62e4032767fcb652a7fff5647a133f16b202
 app.use(require("./routes"));
 //local auth
 

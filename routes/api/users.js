@@ -10,6 +10,7 @@ router.post("/", auth.optional, (req, res, next) => {
     body: { user }
   } = req;
 
+  console.log("user", user);
   if (!user.email) {
     return res.status(422).json({
       errors: {
@@ -31,13 +32,30 @@ router.post("/", auth.optional, (req, res, next) => {
       }
     });
   }
-
+  if (!user.countryId) {
+    return res.status(422).json({
+      errors: {
+        countryId: "is required"
+      }
+    });
+  }
   const finalUser = new Users(user);
+  // const finalUser=new Users({
+  //   name:user.name,
+  //   password:user.password,
+  //   email:user.email,
+  //   address:user.countryId
+  // })
   const Token = finalUser.generateJWT();
-  console.log(Token);
-  // finalUser.email = user.email;
+  // console.log(Token);
+  finalUser.email = user.email;
   finalUser.setPassword(user.password);
   finalUser.name = user.name;
+  finalUser.address = {
+    country_id: user.countryId,
+    state_id: user.stateId,
+    city_id: user.cityId
+  };
 
   return finalUser.save().then(() =>
     res
@@ -92,7 +110,6 @@ router.post("/login", auth.optional, (req, res, next) => {
 });
 
 //GET current route (required, only authenticated users have access)
-// auth.required,
 // router.get("/saqib", (req, res) => {
 //   console.log("Hello Saqib");
 //   res.status(200).send("Hii G ");

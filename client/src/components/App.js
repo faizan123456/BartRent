@@ -29,7 +29,6 @@ class App extends Component {
       if (this.props.currentUser === null) {
         const { setCurrentUser } = this.props;
         const user = auth.getCurrentUser();
-
         setCurrentUser(user);
       }
     }, 300);

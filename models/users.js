@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
-
+const { gender } = require("./gender");
 const { Schema } = mongoose;
 
 const UsersSchema = new Schema({
@@ -10,7 +10,24 @@ const UsersSchema = new Schema({
   email: String,
   name: String,
   hash: String,
-  salt: String
+  salt: String,
+  isAdmiin: Boolean,
+  gender_id: {
+    type: gender
+  },
+  dOB: Date,
+  profile_pic_path: String,
+  phone: String,
+  address: {
+    type: new mongoose.Schema({
+      country_id: "String",
+      state_id: "String",
+      district_id: "String",
+      city_id: "String",
+      postalCode: Number,
+      streetAddress: "String"
+    })
+  }
 });
 
 UsersSchema.methods.setPassword = function(password) {
@@ -48,8 +65,10 @@ UsersSchema.methods.toAuthJSON = function() {
     _id: this._id,
     email: this.email,
     name: this.name,
+    // address: this.address.country_id,
     token: this.generateJWT()
   };
 };
 
-mongoose.model("Users", UsersSchema);
+const User = mongoose.model("Users", UsersSchema);
+exports.User = User;
