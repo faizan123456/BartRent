@@ -56,7 +56,6 @@ class App extends Component {
           <Route exact path="/" component={Landing} />
           <Route path="/new-product" component={ProductForm} />
           <Route path="/edit-product/:id" component={ProductForm} />
-          {/* <Route path="/product-detail/${product._id}" component={productDetail} /> */}
           <Route exact path="/products" component={Products} />
           <Route path="/product/:id" component={productDetail} />
           <Route path="/surveys/new" component={SurveyNew} />

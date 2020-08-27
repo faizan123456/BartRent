@@ -1,22 +1,11 @@
 import http from './httpService';
 import { apiUrl } from '../config.json';
 
-const apiEndPoint = apiUrl + "/products";
+export const apiEndPoint = apiUrl + "/products";
 
 function productUrl(id) {
     return `${apiEndPoint}/${id}`;
 }
-
-// var getProd={};
-// export function setProduct(product) {
-//     getProd = product;
-// }
-
-// export  function getProduct1() {
-//     console.log(getProd)
-//     return getProd;
-// }
-
 
 export function getProducts() {
     return http.get(apiEndPoint);
@@ -28,26 +17,26 @@ export function getProduct(productId){
    return res;
 }
 
-export function saveProduct(product){
-    if(product._id){
-        const body = { ...product };
-        
-        console.log('save method',body)
-        delete body._id;
-       const res = http.put(productUrl(product._id), body);
-        console.log('save product', res);
-        return res;
-    }       
-    return http.post(apiEndPoint, {
-        product: {
-          name: product.name,
-          desc: product.desc,
-          price: product.price,
-          numberInStock: product.numberInStock,
-          category: product.categoryId
-        }
-});
 
+export async function saveProduct(product, formData, config){
+  console.log("Save Method...= ", product, formData, config) 
+  delete product.images;
+  console.log("pro... ", product)
+
+    if(product._id){
+          const body = { ...product };
+          
+          console.log('save method',body)
+          delete body._id;
+        //const res = http.put(productUrl(product._id), body);
+          const res = http.put(productUrl(product._id), formData, config);
+          console.log('save product', res);
+          return res;
+      }
+            
+      const res = await http.post(apiEndPoint, formData, config);
+      console.log("res...= ", res);
+  return res;
 }
 
 export function deleteProduct(productId) {

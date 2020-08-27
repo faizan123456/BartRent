@@ -19,4 +19,4 @@ async function createCategorie(name){
     const result=await cat.save();
     console.log(result);
 }
- //createCategorie('Sports');
+ //createCategorie('Houses and Plottes');

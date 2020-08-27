@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import http from "../services/httpService";
 import Logout from "./Logout";
 import auth, { getJwt } from "../services/authService";
+
 class Header extends Component {
   state = {};
 

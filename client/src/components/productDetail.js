@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { imageUrl } from '../config.json';
 import { getProduct } from '../services/productService';
 
 class productDetail extends Component {
@@ -11,7 +12,6 @@ class productDetail extends Component {
         const {data: product} = await getProduct(id);
         this.setState({ product , category: product.category.name});         
     }
-
       
     async componentDidMount(){
         const {id:productId} = await this.props.match.params;
@@ -23,18 +23,21 @@ class productDetail extends Component {
         //console.log(this.state.category)
 
          const { product, category } = this.state;
-         //console.log('prod detail', product.category);
+         if(product.images) {
+            console.log('prod images... ', product.images[0].filename);
+         }    
         
         return (
             <div className="container">
                 <div className="card pull-center" style={{width: "600px"}}>
                     <div className="card-header bg-primary text-center text-white h3">Product Detail</div>
                     <div className="card-body">
-                        Product Name: {product.name}<br />
-                        Product Description: {product.desc}<br />
-                        Product Price: {product.price}<br />
-                        Number In Stock: {product.numberInStock}<br />
-                        Product Category: {category}
+                        <b>Product Name:</b> {product.name}<br />
+                        <b>Product Description:</b> {product.desc}<br />
+                        <b>Product Price:</b> {product.price}<br />
+                        <b>Number In Stock:</b> {product.numberInStock}<br />
+                        <b>Image:</b> {product.images && <img src={`${imageUrl}/${product.images[0].filename}`} style={{ "width": "100px", "height": "100px" }} /> }<br />
+                        <b>Product Category:</b> {category}
                     </div>
                 </div>
             </div>

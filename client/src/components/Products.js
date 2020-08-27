@@ -1,8 +1,7 @@
 import React, { Component } from "react";
+import { imageUrl } from '../config.json';
 import { Link, Route } from 'react-router-dom'
-import { deleteProduct, getProducts, setProduct} from "../services/productService";
-//import { getCategories } from "../services/proCatService";
-import productDetail from "./productDetail";
+import { deleteProduct, getProducts} from "../services/productService";
 
 class Products extends Component {
     state = {
@@ -11,18 +10,17 @@ class Products extends Component {
         selectedProduct: null   
     }
 
+  //  Spinner() {
+  //   <React.Fragment>
+  //    <div class="spinner-grow text-info"></div>`
+  //   </React.Fragment>     
+  //  }
 
-
-    async componentDidMount() {       
+    async componentDidMount() {   
+         
         const { data: products } = await getProducts();
         this.setState({ products });
      }
-
-      // handleUpdate = async (product) =>{
-      //   await saveProduct(product)
-      // // const prod= await saveProduct(id)
-      //  // console.log('handle update', prod);
-      // }
      
       handleDelete = async (product) => {
         const originalProducts = this.state.products;
@@ -50,6 +48,7 @@ class Products extends Component {
                     <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Image</th>
                         <th>Description</th>
                         <th>Price</th>
                         <th>Number In Stock</th>
@@ -63,6 +62,7 @@ class Products extends Component {
                     products.map((product) => (
                         <tr key={product._id}>
                           <td><Link to={`/product/${product._id}`}>{product.name}</Link></td>
+                          <td><img src={`${imageUrl}/${product.images[0].filename}`} style={{ "width": "100px", "height": "100px" }} /></td>
                           <td>{product.desc}</td>
                           <td>{product.price}</td>
                           <td>{product.numberInStock}</td>

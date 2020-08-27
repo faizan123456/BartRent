@@ -4,13 +4,16 @@ const { Schema } = mongoose;
 
 
 const ProductSchema = new Schema({
+  
+ // _id: mongoose.Schema.Types.ObjectId,
+
   name: {
     type: String,
     required: true,
   },
-  image: {
-    type: String,
-    required: false,
+  images: {
+    type: Object,
+    required: true,
   },
   category: {
     type: ProCatSchema,

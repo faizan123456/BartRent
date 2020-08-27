@@ -25,6 +25,13 @@ module.exports = function(app) {
       { target: "http://localhost:5000" } // replace with your target
     )
   );
+  app.use(
+    createProxyMiddleware(
+      "/uploads/*", // replace with your endpoint
+      { target: "http://localhost:5000" } // replace with your target
+    )
+  );
+
 };
 
 //package.json code
