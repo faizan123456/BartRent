@@ -89,7 +89,8 @@ router.post("/", upload, async (req, res) => {
 });
 
 // Update Products
-router.put("/:id", upload, async (req, res) => {
+router.patch("/:id", upload, async (req, res) => {
+  console.log("Req Data...", req.body);
   console.log('files... ', req.files)
 
   const categoryId = req.body.category;
@@ -98,15 +99,29 @@ router.put("/:id", upload, async (req, res) => {
 
   const productId = req.params.id;
   const update = req.body;  
-  console.log("Updata...", update);
-  const updated = await (Product.findByIdAndUpdate(productId, {
-    name: update.name,
-    price: update.price,
-    images: req.files,
-    category: category,
-    numberInStock: update.numberInStock, 
-    desc: update.desc
-  }));
+  console.log("Updata... ", update);
+  if(req.files.length > 0) {
+    console.log('req File...= ', req.files)
+    const updated = await (Product.findByIdAndUpdate(productId, {
+      name: update.name,
+      price: update.price,
+      images: req.files,
+      category: category,
+      numberInStock: update.numberInStock, 
+      desc: update.desc
+    }));
+  }
+  else {
+    console.log('req File Else... ', req.files)
+    const updated = await (Product.findByIdAndUpdate(productId, {
+      name: update.name,
+      price: update.price,
+      //images: req.files,
+      category: category,
+      numberInStock: update.numberInStock, 
+      desc: update.desc
+    }));
+  }
   console.log('udated.... ', updated)
   if(updated) {
     //console.log('udated... ', updated)

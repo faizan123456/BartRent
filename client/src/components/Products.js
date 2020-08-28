@@ -44,6 +44,9 @@ class Products extends Component {
             <div className="container-fluid">
                 <h4 className="text-primary">Welcome to Product List Component!</h4>
                 <h2>All Products</h2>
+                
+                <Link to={"/new-product"} className="btn btn-primary" >Add Products</Link><br />
+                <br />
                 <table className="table">
                     <thead>
                     <tr>

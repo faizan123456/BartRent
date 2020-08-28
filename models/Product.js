@@ -12,8 +12,8 @@ const ProductSchema = new Schema({
     required: true,
   },
   images: {
-    type: Object,
-    required: true,
+    type: Array,
+    required: false,
   },
   category: {
     type: ProCatSchema,

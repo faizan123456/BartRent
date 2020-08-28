@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link, Route } from 'react-router-dom';
 import Joi from "joi-browser";
 import Input from "./input";
 import Select from "./select";
@@ -116,12 +117,15 @@ return true;
 
   renderButton(label) {
     return (
+      <div>
       <button
         disabled={this.validate()}
         className={label === "Register" ? "btn btn-success" : "btn btn-primary"}
       >
         {label}
-      </button>
+      </button> &nbsp; &nbsp; &nbsp; 
+      <Link to={"/products"} className="btn btn-info">Go Back</Link>
+      </div>
     );
   };
 
@@ -142,27 +146,21 @@ return true;
 
   renderImage(name, label, type = "file") {
     const { data, errors } = this.state;
-    
-    
-    // if(!data[name]) {
-    //   return <div>Loading....</div>
-    // }
-    
+        
     if(data[name]) {
-      var mydata = Object.values(data[name])
-      console.log('imgaes', mydata[1] )
-      console.log('Hoja Yar... ', data[name])
-      } 
-
+      var mydata = data[name].length
+      console.log('imgaes', mydata)
+    }
+      
       return (
         <Image
           type={type}
           name={name}
-          //value={mydata ? mydata[1] : ""}
+          //value={data[name] && mydata.length || ""}
+          defaultVal={mydata && mydata || null}
           label={label}
           onChange={this.handleImage}
           error={errors[name]}
-          className="btn btn-outline-primary"
           accept="image/*"
         />
        )  

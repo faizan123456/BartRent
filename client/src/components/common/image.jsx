@@ -1,13 +1,25 @@
 import React from "react";
-const Image = ({ error, name, label, ...rest }) => {
-
+const Image = ({ error, name, defaultVal, label, ...rest }) => {
+  console.log("rest...= ", defaultVal)
+  
   return (
     // <div>Loading...</div>
     <div className="form-group">
-      <label htmlFor={name}>{label}</label><br />
-      <input type="file" {...rest} className="" name={name} id={name} multiple="multiple" required />
+      
+      <label htmlFor={name}>{label}</label><br />      
+      {
+        (defaultVal) ?        
+        <div>
+          <input type="file" {...rest} className="btn btn-warning" name={name} id={name} multiple="multiple" />
+          <span>{defaultVal} images selected</span>          
+        </div> :
+          <input type="file" {...rest} className="btn btn-warning" name={name} id={name} multiple="multiple" required />        
+      } 
+
       {error && <div className="alert alert-danger">{error}</div>}
+      
     </div>
+    
      // autoFocus 
   );
 };
@@ -15,12 +27,3 @@ const Image = ({ error, name, label, ...rest }) => {
 export default Image;
 
 
-// return this.data.emailGroup.emails.map((email, index) => {
-//   return (
-//       <div key={index} className="input-group">
-//           <input type="text"
-//                  className="form-control"
-//                  onChange={self.handleEmailListChange.bind(this, index)} value={email}/>
-//       </div>
-//   );
-// });

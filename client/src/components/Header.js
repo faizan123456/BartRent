@@ -56,15 +56,15 @@ class Header extends Component {
   render() {
     // console.log(this.props);
     return (
-      <nav>
-        <div className="nav-wrapper">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="collapse navbar-collapse">
           <Link
             to={this.props.auth ? "/surveys" : "/"}
-            className="left brand-logo"
+            className="left navbar-brand"
           >
             Barter And Rental Managment
           </Link>
-          <ul id="nav-mobile" className="right hide-on-med-and-down">
+          <ul id="nav-mobile" className="navbar-nav">
             {/* <li>
               <a href="#">SignIn With Google</a>
             </li> */}

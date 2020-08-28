@@ -8,6 +8,7 @@ const Landing = () => {
     >
       <h1>Emaily!</h1>
       <p>Marketing Text For Emaily</p>
+      <button href="#" className="btn btn-primary">Go To Shop</button>
     </div>
   );
 };

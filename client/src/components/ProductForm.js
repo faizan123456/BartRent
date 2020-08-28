@@ -18,7 +18,6 @@ class ProductForm extends Form {
         errors: {},
       };
 
-
     schema = {
         _id: Joi.string(),
         name: Joi.string().required().label("Name"),
@@ -29,8 +28,6 @@ class ProductForm extends Form {
         numberInStock: Joi.number().required().min(0).max(100)
         .label("Number in Stock"),        
     };
-
-    
 
     async populateCategory() {
         const { data: category } = await getCategories();
@@ -73,17 +70,21 @@ class ProductForm extends Form {
 
     doSubmit = async () => {
       console.log("submit....")
-      console.log("dataaaa....", this.state.data.images);
-
+      console.log("dataaaa....", this.state.data);
+ 
     const formData = new FormData();
+    //var count = 0;
+    console.warn(">> formData Before Loop >> ", formData.getAll('images'));
+    //if(count )
     for(var x = 0; x < this.state.data.images.length; x++)
      {
       console.log("StateForm... = ", this.state.data.images[x])  
       const imgForm = formData.append('images', this.state.data.images[x])
       console.log("imgForm...= ", imgForm)
+      //count++
      }
      console.warn(">> formData >> ", formData.getAll('images'));
-     console.log(">> image state >> ", this.state.data.images); 
+     console.log(">> image state >> ", this.state.data); 
     
      formData.append('name', this.state.data.name);
      formData.append("desc", this.state.data.desc);

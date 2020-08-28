@@ -24,12 +24,19 @@ export async function saveProduct(product, formData, config){
   console.log("pro... ", product)
 
     if(product._id){
-          const body = { ...product };
-          
-          console.log('save method',body)
+          const body = { ...product };          
+          console.log('save method', body)
           delete body._id;
         //const res = http.put(productUrl(product._id), body);
-          const res = http.put(productUrl(product._id), formData, config);
+        console.log("formdata mera wala.... meherbani he theek se chalna", product)        
+        var files = formData.getAll('images')
+        console.log("formdataaaaa.... ", files[0].name)
+        if(!files[0].name){
+           formData.delete("images")
+           console.log('formmmmm... ', formData.getAll('images')) 
+        }  
+        console.log("formdataaaaa.... ", files[0].name)
+        const res = http.patch(productUrl(product._id), formData, config);
           console.log('save product', res);
           return res;
       }
