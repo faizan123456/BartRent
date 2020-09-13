@@ -1,5 +1,15 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
+
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primeflex/primeflex.css';
+import 'primeicons/primeicons.css';
+import 'prismjs/themes/prism-coy.css';
+import '../admin/assets/style/app/App.scss';
+import '../admin/assets/style/primereact.css';
+import '../admin/assets/style/flags.css';
+
+
 import Header from "./Header";
 import Landing from "./Landing";
 import LoginForm from "./Login";
@@ -14,14 +24,22 @@ import { setCurrentUser } from "../redux/user/user.action";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../redux/user/user.selector";
+import './App.css';
 
 import auth from "../services/authService";
 import productDetail from "./productDetail";
+// import AdminApp from './../admin/components/adminApp';
+// import Admin from './../admin/admin';
+import { routes } from '../admin/components/adminApp';
+import Dashboard from './../admin/components/dashboard';
 
-const Dasboard = () => <h2>Dasboard</h2>;
+const Dasboarde = () => <h2>Dasboard</h2>;
 const SurveyNew = () => <h2>SurveyNew</h2>;
 
 class App extends Component {
+  state = {
+
+  }
   constructor(props) {
     super(props);
     console.log("before setTime OUt", this.props.currentUser);
@@ -48,11 +66,18 @@ class App extends Component {
   }
 
   render() {
+
+    // let routeConfig = [];
+    // routeConfig = routeConfig.concat();
+    
+
     return (
-      <div>
+      <div>  
+             
         <BrowserRouter>
           <Header />
-          <Route exact path="/surveys" component={Dasboard} />
+          <Switch>
+          <Route exact path="/surveys" component={Dasboarde} />
           <Route exact path="/" component={Landing} />
           <Route path="/new-product" component={ProductForm} />
           <Route path="/edit-product/:id" component={ProductForm} />
@@ -64,7 +89,13 @@ class App extends Component {
           <Route path="/register" component={RegisterForm} />
           <Route path="/current" component={CurrentUser} />
           <Route path="/logout" component={Logout} />
-        </BrowserRouter>
+          <Route path="/admin" component={Dashboard} />
+          {
+            routes.map(({ path, component }, key) => <Route exact path={path} component={component} key={key} /> ),
+            console.log("Routes", routes)
+          } 
+          </Switch>
+          </BrowserRouter>
       </div>
     );
   }

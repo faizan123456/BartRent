@@ -116,7 +116,6 @@ router.patch("/:id", upload, async (req, res) => {
     const updated = await (Product.findByIdAndUpdate(productId, {
       name: update.name,
       price: update.price,
-      //images: req.files,
       category: category,
       numberInStock: update.numberInStock, 
       desc: update.desc
