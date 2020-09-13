@@ -12,7 +12,7 @@ export async function getCurrent() {
   // const token = res.data.token;
   const token = res.headers["x-auth-token"];
   console.log("this one", token);
-
+  // console.log("okk okk", loginWithJwt(token));
   loginWithJwt(token);
 }
 
@@ -52,6 +52,7 @@ export function logout() {
 }
 
 export function getCurrentUser() {
+  //for local auth
   console.log("get current user g.........");
   try {
     const jwt = localStorage.getItem("token");

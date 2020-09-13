@@ -40,19 +40,19 @@ class RegisterForm extends Form {
     const { data: countries } = await userService.getCountries();
     this.setState({ countries });
   };
-  populateStates = async () => {
-    const { data: states } = await userService.getStates();
-    this.setState({ states });
-  };
-  populateCities = async () => {
-    const { data: cities } = await userService.getCities();
-    this.setState({ cities });
-  };
+  // populateStates = async () => {
+  //   const { data: states } = await userService.getStates();
+  //   this.setState({ states });
+  // };
+  // populateCities = async () => {
+  //   const { data: cities } = await userService.getCities();
+  //   this.setState({ cities });
+  // };
 
   async componentDidMount() {
     await this.populateCountries();
-    await this.populateStates();
-    await this.populateCities();
+    // await this.populateStates();
+    // await this.populateCities();
   }
   schema = {
     name: Joi.string()
@@ -81,9 +81,9 @@ class RegisterForm extends Form {
     // Call the server
     try {
       const response = await userService.register(this.state.data);
-      //   console.log("Register form response obj", response);
+      console.log("Register form response obj", response);
       auth.loginWithJwt(response.headers["x-auth-token"]);
-      window.location = "/";
+      // window.location = "/";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
@@ -104,19 +104,11 @@ class RegisterForm extends Form {
         <form onSubmit={this.handleSubmit}>
           <div className="container">
             {this.renderInput("name", "Name")}
+            {this.renderInput("username", "Username")}
+            {this.renderInput("password", "Password", "password")}
             {this.renderSelect("countryId", "Country", this.state.countries)}
             {this.renderSelect("stateId", "State", this.state.states)}
             {this.renderSelect("cityId", "City", this.state.cities)}
-            {/* <div class="input-field col s12">
-              <select id="" className="browser-default">
-                <option value="" />
-                <option value="1">Pak</option>
-                <option value="2">Ind</option>
-                <option value="3">Ban</option>
-              </select>
-            </div> */}
-            {this.renderInput("username", "Username")}
-            {this.renderInput("password", "Password", "password")}
             {this.renderButton("Register")}
           </div>
         </form>

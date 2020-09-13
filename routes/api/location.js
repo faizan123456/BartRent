@@ -13,8 +13,13 @@ router.get("/states", async (req, res) => {
   const state = await State.find();
   res.send(state);
 });
-router.get("/cities", async (req, res) => {
-  const city = await City.find();
+router.get("/states/:id", async (req, res) => {
+  console.log("id  of cId", req.params.id);
+  const state = await State.find({ c_id: req.params.id });
+  res.send(state);
+});
+router.get("/cities/:id", async (req, res) => {
+  const city = await City.find({ s_id: req.params.id });
   res.send(city);
 });
 

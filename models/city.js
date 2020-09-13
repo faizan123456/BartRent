@@ -20,4 +20,4 @@ async function createCity(s_id, name) {
   const result = await city.save();
   console.log(result);
 }
-// createCity("5f16ca6aba0c333ae031d685", "Sialkot");
+// createCity("5f16cac36c51b3437c40d783", "Hyderabad");

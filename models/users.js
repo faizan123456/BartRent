@@ -22,7 +22,6 @@ const UsersSchema = new Schema({
     type: new mongoose.Schema({
       country_id: "String",
       state_id: "String",
-      district_id: "String",
       city_id: "String",
       postalCode: Number,
       streetAddress: "String"

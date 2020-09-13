@@ -4,6 +4,7 @@ const apiEndpoint = apiUrl + "/users";
 
 export async function register(user) {
   // console.log("I am Registered method ", user, apiEndpoint);
+  console.log("user of register method", user.countryId);
   const result = await http.post(apiEndpoint, {
     user: {
       email: user.username,
@@ -22,10 +23,13 @@ export function getCountries() {
   return http.get(apiUrl + "/loc");
 }
 
-export function getStates() {
-  return http.get(apiUrl + "/loc/states");
+export function getStates(cId) {
+  console.log(cId);
+  const res = http.get(apiUrl + "/loc/states/" + cId);
+  console.log(res);
+  return res;
 }
 
-export function getCities() {
-  return http.get(apiUrl + "/loc/cities");
+export function getCities(sId) {
+  return http.get(apiUrl + "/loc/cities/" + sId);
 }

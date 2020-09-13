@@ -29,9 +29,15 @@ class App extends Component {
       }
     }, 300);
   }
-  componentDidMount() {
-    auth.getCurrent();
+  async componentDidMount() {
+    await auth.getCurrent();
+    // console.log("userWithOUtSocial", userWithOUtSocial);
     const { setCurrentUser } = this.props;
+
+    // if (userWithOUtSocial) {
+    //   setCurrentUser(userWithOUtSocial);
+    // }
+
     const user = auth.getCurrentUser();
     console.log("user of component did mount", user);
     // if (user !== null) {
@@ -44,6 +50,11 @@ class App extends Component {
   }
 
   render() {
+    console.log("for test", this.props.currentUser);
+
+    // const { name, email } = this.props.currentUser;
+    // console.log("name", name);
+
     return (
       <div>
         <BrowserRouter>
