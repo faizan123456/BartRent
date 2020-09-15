@@ -4,6 +4,12 @@
 /node_modules
 /.pnp
 .pnp.js
+/public/comments
+/public/wp-json
+/public/wp-content
+/public/wp-includes
+/public/feed
+
 
 # testing
 /coverage
