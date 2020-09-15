@@ -1,25 +1,29 @@
 const mongoose = require("mongoose");
+const { ProCatSchema } = require("./proCat")
 const { Schema } = mongoose;
 
 
 const ProductSchema = new Schema({
+  
+ // _id: mongoose.Schema.Types.ObjectId,
+
   name: {
     type: String,
     required: true,
   },
-  image: {
-    type: String,
-    required: true,
+  images: {
+    type: Array,
+    required: false,
   },
   category: {
-    type: String,
+    type: ProCatSchema,
     required: true,
   },
   desc: {
     type: String,
     required: true,
   },
-  countInStock: {
+  numberInStock: {
     type: Number,
     default: 0,
     required: true,

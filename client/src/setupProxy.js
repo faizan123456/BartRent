@@ -25,6 +25,20 @@ module.exports = function(app) {
       { target: "http://localhost:5000" } // replace with your target
     )
   );
+  app.use(
+    createProxyMiddleware(
+      "/uploads/*", // replace with your endpoint
+      { target: "http://localhost:5000" } // replace with your target
+    )
+  );
+  app.use(
+    createProxyMiddleware(
+      "/wp-content/themes/houzillo/css/webfonts/*", // replace with your endpoint
+      {
+        target: "http://www.houzillo.com/"
+      } // replace with your target
+    )
+  );
 };
 
 //package.json code

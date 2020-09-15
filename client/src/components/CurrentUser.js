@@ -49,7 +49,12 @@ import { selectCurrentUser, selectUser } from "../redux/user/user.selector";
 
 const CurrentUser = props => {
   if (props.currentUser) {
-    return <div>{props.currentUser.name}</div>;
+    return (
+      <div>
+        <h1> {props.currentUser.name}</h1>
+        <h1> {props.currentUser.isAdmin} </h1>
+      </div>
+    );
   }
   // return <div>{props.currentUser}</div>;
   return null;

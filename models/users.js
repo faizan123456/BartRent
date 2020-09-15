@@ -11,7 +11,7 @@ const UsersSchema = new Schema({
   name: String,
   hash: String,
   salt: String,
-  isAdmiin: Boolean,
+  isAdmin: Boolean,
   gender_id: {
     type: gender
   },
@@ -53,6 +53,7 @@ UsersSchema.methods.generateJWT = function() {
       email: this.email,
       id: this._id,
       name: this.name,
+      isAdmin: this.isAdmin,
       exp: parseInt(expirationDate.getTime() / 1000, 10)
     },
     "secret"
