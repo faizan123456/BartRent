@@ -95,7 +95,7 @@ class App extends Component {
           {/* <Header /> */}
           <Switch>
             {/* <Route exact path="/surveys" component={Dasboarde} /> */}
-            {/* <Route exact path="/" component={Landing} /> */}
+            <Route exact path="/" component={Landing} />
             <Route path="/new-product" component={ProductForm} />
             <Route path="/edit-product/:id" component={ProductForm} />
             <Route exact path="/products" component={Products} />

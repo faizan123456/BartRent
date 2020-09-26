@@ -1,13 +1,13 @@
 import React from "react";
 import Dashboard from "./components/dashboard";
 
-import "primereact/resources/themes/saga-blue/theme.css";
-import "primeflex/primeflex.css";
-import "primeicons/primeicons.css";
-import "prismjs/themes/prism-coy.css";
-import "../admin/assets/style/app/App.scss";
-import "../admin/assets/style/primereact.css";
-import "../admin/assets/style/flags.css";
+// import "primereact/resources/themes/saga-blue/theme.css";
+// import "primeflex/primeflex.css";
+// import "primeicons/primeicons.css";
+// import "prismjs/themes/prism-coy.css";
+// import "../admin/assets/style/app/App.scss";
+// import "../admin/assets/style/primereact.css";
+// import "../admin/assets/style/flags.css";
 
 const Admin = () => {
   return <Dashboard />;
