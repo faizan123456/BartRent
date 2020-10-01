@@ -68,10 +68,9 @@ class LoginForm extends Form {
             {this.renderButton("Login")}
           </div>
           <div className="mt-4">
-            <span style={{ marginLeft: 35, fontSize: 12, fontWeight: "bold" }}>
+            <span style={{ marginLeft: 22, fontSize: 12, fontWeight: "bold" }}>
               Don't have an Account?
             </span>
-            <a data-dismiss="modal"></a>
             <Link
               style={{
                 textDecoration: "none",
@@ -82,6 +81,7 @@ class LoginForm extends Form {
               to="/"
               data-toggle="modal"
               data-target="#registerModal"
+              data-backdrop="static"
             >
               Register
             </Link>

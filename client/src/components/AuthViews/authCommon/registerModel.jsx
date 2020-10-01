@@ -20,8 +20,11 @@ const RegisterModal = (props) => {
     <React.Fragment>
       {/* Auth Modal */}
       <div className="modal fade" id="registerModal">
-        <div className="modal-dialog" style={{ marginTop: 100 }}>
-          <div className="modal-content" style={{}}>
+        <div
+          className="modal-dialog"
+          style={{ marginTop: 48, marginRight: 300 }}
+        >
+          <div className="modal-content" style={{ width: 600 }}>
             <div className={`"modal-body" ${classes.registerCard}`}>
               <div className="container">
                 <div>

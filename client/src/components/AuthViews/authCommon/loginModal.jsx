@@ -24,9 +24,9 @@ const LoginModal = (props) => {
       <div className="modal fade" id="loginModal">
         <div
           className="modal-dialog"
-          style={{ marginTop: 130, marginRight: 330 }}
+          style={{ marginTop: 50, marginRight: 270 }}
         >
-          <div className="modal-content" style={{ width: 600 }}>
+          <div className="modal-content">
             <div className="row">
               <div className={`col-md-6 ${classes.loginCard}`}></div>
 
