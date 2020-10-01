@@ -12,8 +12,8 @@ export async function register(user) {
       name: user.name,
       countryId: user.countryId,
       stateId: user.stateId,
-      cityId: user.cityId
-    }
+      cityId: user.cityId,
+    },
   });
   console.log("registred post req", result);
   return result;

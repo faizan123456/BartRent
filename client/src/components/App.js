@@ -3,10 +3,10 @@ import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
 
 import Header from "./Headerdummy";
 import Landing from "./Landing";
-import LoginForm from "./Login";
+import LoginForm from "./AuthViews/login";
 import Logout from "./Logout";
 import NotFound from "./notFound";
-import RegisterForm from "./Registration";
+import RegisterForm from "./AuthViews/register";
 import CurrentUser from "./CurrentUser";
 import ProductForm from "./ProductForm";
 import Products from "./Products";
@@ -21,9 +21,7 @@ import auth from "../services/authService";
 import productDetail from "./productDetail";
 // import AdminApp from './../admin/components/adminApp';
 // import Admin from './../admin/admin';
-import Dashboard from "./../admin/components/dashboard";
-import Admin1 from "./../admin/components/admin1";
-import Admin from "./../admin/admin";
+// import Dashboard from "./../admin/components/dashboard";
 
 // we have two type of tokens
 // 1. via Social login       getCurrent()
@@ -82,7 +80,7 @@ class App extends Component {
             <Switch>
               {/* <Route exact path="/surveys" component={Dasboarde} /> */}
               {/* <Route exact path="/" component={Dashboard} /> */}
-              <Route exact path="/" component={Admin} />
+              {/* <Route exact path="/" component={Admin} /> */}
               <Route path="/logout" component={Logout} />
             </Switch>
           </BrowserRouter>
@@ -112,12 +110,12 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 });
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 

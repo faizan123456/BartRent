@@ -5,7 +5,7 @@ import Footer from './footer';
 
 const Landing = () => {
   return (
-       <div className="App">
+      <div className="App">
         <Header />
         <Content />
         <Footer />
