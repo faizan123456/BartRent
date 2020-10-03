@@ -30,7 +30,7 @@ const Select = ({ name, label, id, options, error, ...rest }) => {
         {...rest}
         size="small"
         label={label}
-        style={{ width: 196 }}
+        style={{ width: 210 }}
         variant="outlined"
         labelId="demo-simple-select-label"
         id={id}

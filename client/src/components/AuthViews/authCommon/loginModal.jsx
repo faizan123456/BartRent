@@ -22,10 +22,7 @@ const LoginModal = (props) => {
     <React.Fragment>
       {/* Auth Modal */}
       <div className="modal fade" id="loginModal">
-        <div
-          className="modal-dialog"
-          style={{ marginTop: 50, marginRight: 270 }}
-        >
+        <div className="modal-dialog" style={{marginTop: 130}}>
           <div className="modal-content">
             <div className="row">
               <div className={`col-md-6 ${classes.loginCard}`}></div>
@@ -44,34 +41,35 @@ const LoginModal = (props) => {
                   </div>
                   <LoginForm />
                   <div>
-                    <h5 className="text-success ml-1 mt-2">
+                    <h3 className="text-success ml-1 mt-2">
                       Login Via Social{" "}
-                    </h5>
-                    <a
-                      href="/auth/google"
-                      type="button"
-                      className="btn btn-outline-danger mt-2"
-                      style={{
-                        marginLeft: 22,
-                        fontSize: 10,
-                        fontFamily: "verdana",
-                      }}
-                    >
-                      <i className="fa fa-google" aria-hidden="true"></i> |
-                      Login with google{" "}
-                    </a>
+                    </h3>
                     <a
                       href="/auth/facebook"
                       type="button"
                       className="btn btn-outline-primary mt-3"
                       style={{
-                        marginLeft: 22,
-                        fontSize: 10,
+                        marginLeft: 10,
+                        marginBottom: 7,
+                        fontSize: 14,
                         fontFamily: "verdana",
                       }}
                     >
                       <i className="fa fa-facebook" aria-hidden="true"></i> |
                       Login with facebook{" "}
+                    </a>
+                    <a
+                      href="/auth/google"
+                      type="button"
+                      className="btn btn-outline-danger mt-2"
+                      style={{
+                        marginLeft: 10,
+                        fontSize: 14,
+                        fontFamily: "verdana",
+                      }}
+                    >
+                      <i className="fa fa-google" aria-hidden="true"></i> |
+                      Login with google 
                     </a>
                     <hr />
                   </div>

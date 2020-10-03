@@ -102,7 +102,7 @@ class RegisterForm extends Form {
   render() {
     return (
       <div>
-        <h4 className="text-success">Register Here</h4>
+        <h2 className="text-success">Register Here</h2>
         <hr />
         <div className="container">
           <form onSubmit={this.handleSubmit}>

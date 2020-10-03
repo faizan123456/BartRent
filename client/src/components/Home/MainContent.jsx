@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 10,
   },
   hero: {
-    height: "400px",
+    height: "450px",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
@@ -73,12 +73,12 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 0,
     paddingTop: "56.25%", // 16:9
-    width: 300,
+    width: 360,
     height: "auto",
     "-webkit-transition": ".3s ease-in-out",
     transition: ".3s ease-in-out",
     "&:hover": {
-      width: 350,
+      width: 390,
     },
   },
   expand: {
@@ -145,7 +145,7 @@ const MainContent = () => {
           <Typography
             align="left"
             className={classes.headerTitle}
-            style={{ marginTop: 40 }}
+            style={{ marginTop: 80 }}
           >
             Best Rentals
           </Typography>
@@ -161,7 +161,6 @@ const MainContent = () => {
             nav
           >
             {images.map((item, index) => (
-              
               <Card key={index} style={{ margin: 3 }}>
                 <CardHeader
                   avatar={
@@ -256,7 +255,7 @@ const MainContent = () => {
           <Typography
             align="left"
             className={classes.headerTitle}
-            style={{ marginTop: 40 }}
+            style={{ marginTop: 80 }}
           >
             Best Barts
           </Typography>
@@ -361,7 +360,7 @@ const MainContent = () => {
       </Box>
 
       <Box>
-        <div className="row" style={{ marginTop: 70 }}>
+        <div className="row" style={{ marginTop: 100 }}>
           <img
             className={classes.hero}
             style={{ width: "50%" }}
@@ -369,10 +368,10 @@ const MainContent = () => {
           />
           <Card
             className={classes.portalSelect}
-            style={{ marginTop: 150, marginLeft: 120 }}
+            style={{ marginTop: 170, marginLeft: 160 }}
           >
             <Link
-              to="/"
+              to="/product-grid"
               className={classes.portalSelectLink}
               style={{ textDecoration: "none", color: "#fff" }}
             >
@@ -388,10 +387,10 @@ const MainContent = () => {
           />
           <Card
             className={classes.portalSelect}
-            style={{ marginTop: 150, marginLeft: 700 }}
+            style={{ marginTop: 170, marginLeft: 900 }}
           >
             <Link
-              to="/"
+              to="/product-grid"
               className={classes.portalSelectLink}
               style={{ textDecoration: "none", color: "#fff" }}
             >
@@ -401,15 +400,6 @@ const MainContent = () => {
           </Card>
         </div>
       </Box>
-
-      {/* <Box style={{ marginTop: 80, height: 200, backgroundImage: `url('https://media.istockphoto.com/videos/silk-black-flag-animation-of-dark-color-background-video-waving-in-video-id1170467563?s=640x640')`, color: "#fff" }}>
-        <div className="container">
-          <div className="row">
-					  <div className="col-12 col-md-12 col-lg-6 col-xl-4 at-fwidget-content">
-              
-            </div>
-        </div>
-      </Box> */}
     </React.Fragment>
   );
 };

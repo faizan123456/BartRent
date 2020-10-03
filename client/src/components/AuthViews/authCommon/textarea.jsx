@@ -12,7 +12,7 @@ const TextArea = ({ error, name, id, value, label, ...rest }) => {
         multiline
         rows={4}
         //cols={30}
-        style={{ width: 440 }}
+        style={{ width: 455 }}
         //labelWidth={60}
         placeholder="Try to give your exact postal address..."
         variant="outlined"

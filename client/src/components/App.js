@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
 
 import Header from "./Headerdummy";
-import Landing from "./Landing";
+import Landing from "./Home/Landing";
+import ProductGrid from "./Home/productGrid/productGrid";
 import LoginForm from "./AuthViews/login";
 import Logout from "./Logout";
 import NotFound from "./notFound";
@@ -94,6 +95,7 @@ class App extends Component {
           <Switch>
             {/* <Route exact path="/surveys" component={Dasboarde} /> */}
             <Route exact path="/" component={Landing} />
+            <Route path="/product-grid" component={ProductGrid} />
             <Route path="/new-product" component={ProductForm} />
             <Route path="/edit-product/:id" component={ProductForm} />
             <Route exact path="/products" component={Products} />

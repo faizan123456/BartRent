@@ -10,6 +10,7 @@ const Date = ({ error, id, name, label, ...rest }) => {
         id={id}
         label={label}
         size="small"
+        style={{ width: 210 }}
         variant="outlined"
         //defaultValue="1234-11-1212"
         InputLabelProps={{

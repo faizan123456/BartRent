@@ -210,8 +210,8 @@ class Form extends Component {
           disabled={this.validate()}
           className={
             label === "Register"
-              ? "btn btn-success btn-sm mt-2"
-              : "btn btn-primary btn-sm mt-2"
+              ? "btn btn-success mt-2"
+              : "btn btn-primary mt-3"
           }
         >
           {label}

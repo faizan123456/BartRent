@@ -22,9 +22,9 @@ const RegisterModal = (props) => {
       <div className="modal fade" id="registerModal">
         <div
           className="modal-dialog"
-          style={{ marginTop: 48, marginRight: 300 }}
+          style={{ marginTop: 127, marginRight: 450 }}
         >
-          <div className="modal-content" style={{ width: 600 }}>
+          <div className="modal-content" style={{ width: 520 }}>
             <div className={`"modal-body" ${classes.registerCard}`}>
               <div className="container">
                 <div>
@@ -40,14 +40,14 @@ const RegisterModal = (props) => {
                 </div>
                 <RegisterForm />
                 <div>
-                  <h5 className="text-dark mt-3">Login Via Social </h5>
+                  <h3 className="text-dark mt-3">Login Via Social </h3>
                   <a
                     href="/auth/google"
                     type="button"
                     className="btn btn-danger mt-2 mb-5"
                     style={{
                       marginLeft: 22,
-                      fontSize: 10,
+                      fontSize: 14,
                       fontFamily: "verdana",
                     }}
                   >
@@ -60,7 +60,7 @@ const RegisterModal = (props) => {
                     className="btn btn-primary mt-2 mb-5"
                     style={{
                       marginLeft: 22,
-                      fontSize: 10,
+                      fontSize: 14,
                       fontFamily: "verdana",
                     }}
                   >

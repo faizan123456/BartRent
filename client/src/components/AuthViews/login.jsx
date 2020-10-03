@@ -43,11 +43,11 @@ class LoginForm extends Form {
     //const classes = useStyles();
     return (
       <div>
-        <h4 className="text-primary">Login Here</h4>
+        <h3 className="text-primary">Login Here</h3>
         <hr className="mb-3" />
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("email", "Email", "", "email", "mb-3")}
-          {this.renderInput("password", "Password", "password")}
+          {this.renderInput("password", "Password", "password", "", "mb-2")}
           {this.renderCheckBox("Remember Me")}
           <div>
             <Link
@@ -58,7 +58,7 @@ class LoginForm extends Form {
                 color: "gray",
                 fontSize: 12,
                 //marginLeft: 70,
-                marginTop: 22,
+                marginTop: 38,
               }}
             >
               <u>
@@ -67,15 +67,15 @@ class LoginForm extends Form {
             </Link>
             {this.renderButton("Login")}
           </div>
-          <div className="mt-4">
-            <span style={{ marginLeft: 22, fontSize: 12, fontWeight: "bold" }}>
+          <div className="mt-1">
+            <span style={{ fontSize: 14, fontWeight: "bold" }}>
               Don't have an Account?
             </span>
             <Link
               style={{
                 textDecoration: "none",
                 color: "navy",
-                fontSize: 12,
+                fontSize: 16,
                 marginLeft: 5,
               }}
               to="/"
