@@ -13,18 +13,14 @@ class LoginForm extends Form {
   state = {
     data: {
       username: "",
-      password: ""
+      password: "",
     },
-    errors: {}
+    errors: {},
   };
 
   schema = {
-    username: Joi.string()
-      .required()
-      .label("Username"),
-    password: Joi.string()
-      .required()
-      .label("Password")
+    username: Joi.string().required().label("Username"),
+    password: Joi.string().required().label("Password"),
   };
 
   doSubmit = async () => {
@@ -32,7 +28,7 @@ class LoginForm extends Form {
     try {
       await auth.login(username, password);
       const { state } = this.props.location;
-      window.location = state ? state.from.pathname : "/";
+      window.location = state ? state.from.pathname : "/products";
     } catch (error) {
       if (error.response && error.response.status === 400) {
         const errors = { ...this.state.errors };

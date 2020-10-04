@@ -30,8 +30,8 @@ export async function login(email, password) {
     {
       user: {
         email: email,
-        password: password
-      }
+        password: password,
+      },
     }
   );
   console.log("LLoogin", jwt.user.token);
@@ -85,5 +85,5 @@ export default {
   logout,
   getCurrentUser,
   getJwt,
-  getCurrent
+  getCurrent,
 };

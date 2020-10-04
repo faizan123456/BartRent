@@ -1,8 +1,8 @@
 const jwt = require("express-jwt");
 
-const getTokenFromHeaders = req => {
+const getTokenFromHeaders = (req) => {
   const {
-    headers: { authorization }
+    headers: { authorization },
   } = req;
   // console.log(headers);
   // console.log("JWT", req.headers.authorization);
@@ -28,14 +28,14 @@ const auth = {
   required: jwt({
     secret: "secret",
     userProperty: "payload",
-    getToken: getTokenFromHeaders
+    getToken: getTokenFromHeaders,
   }),
 
   optional: jwt({
     secret: "secret",
     userProperty: "payload",
     getToken: getTokenFromHeaders,
-    credentialsRequired: false
-  })
+    credentialsRequired: false,
+  }),
 };
 module.exports = auth;

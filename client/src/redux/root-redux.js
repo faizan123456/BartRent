@@ -4,6 +4,10 @@ import { combineReducers } from "redux";
 
 import userReducer from "./user/user.reducer";
 import productListReducer from "./products/product.reducer";
+import TransactionReducer from "./transaction/transactions.reducer";
+import SwapTypesReducer from "./swapTypes/swapTypes.reducer";
+import ProductCategories from "./categories/categories.reducer";
+
 // import cartReducer from "./cart/cart.reducer";
 // import directoryReducer from "./directory/directory.reducer";
 // import shopReducer from "./shop/shop.reducer";
@@ -14,9 +18,14 @@ import productListReducer from "./products/product.reducer";
 //   whitelist: ["cart"]
 // };
 
+import { reducer as reducerForm } from "redux-form";
 const rootReducer = combineReducers({
   user: userReducer,
-  products: productListReducer
+  form: reducerForm,
+  products: productListReducer,
+  transaction: TransactionReducer,
+  swapType: SwapTypesReducer,
+  categories: ProductCategories,
 });
 
 export default rootReducer;

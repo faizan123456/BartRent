@@ -1,5 +1,7 @@
 import React from "react";
-import Dashboard from "./components/dashboard";
+import Dashboard from "./componentsOwn/dashboard";
+// import "../node_modules/materialize-css/dist/css/materialize.min.css";
+// import "../../node_modules/@fullcalendar/common/vdom";
 
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primeflex/primeflex.css";
@@ -9,21 +11,31 @@ import "../admin/assets/style/app/App.scss";
 import "../admin/assets/style/primereact.css";
 import "../admin/assets/style/flags.css";
 
+import "react-app-polyfill/ie11";
+
+import ScrollToTop from "./ScrollToTop";
+import AdminApp from "./adminApp";
+
 const Admin = () => {
-  return <Dashboard />;
+  //Thhis is Equal to Index.js file
+  return (
+    <ScrollToTop>
+      <AdminApp />
+      {/* // <Dashboard /> */}
+    </ScrollToTop>
+  );
 };
 
 export default Admin;
 
-//Dashboard ->Charts, Cards, 
+//Dashboard ->Charts, Cards,
 //NavBar -> of admin
 // Barter   ->List of  Users,Swaps,products,orders, payments Details,logout,profile, ,
-// Renting  ->users,rentals,products ,orders Details,payments Detail,logouy,profile  
-
+// Renting  ->users,rentals,products ,orders Details,payments Detail,logouy,profile
 
 //NavBar -> of Client
 // Barter   ->Home,Products,Swaps,Rental,How its work,logout ,profile ,Gallery,contact us ,about
-// Renting  ->users,rentals,products ,orders Details,payments Detail,logouy,profile  
+// Renting  ->users,rentals,products ,orders Details,payments Detail,logouy,profile
 
 //Categories -> 1. Cars,Mobiles,Books,Clothing Women, Animals And Birds,Sports Equipment,Furniture,
 //Computer And Lpatopes,Electornics,Videos Games,Musical intruments, Traveling Equipments,antique,
@@ -31,9 +43,6 @@ export default Admin;
 //kids acceries, Home appliences,decor, medicine,bikes,gym and fitness, camera, Acs and Coolers, fans,
 //
 //Landing pages  Home ,  Rental ,Barter
-
-
-
 
 // import React, {Component, Fragment} from 'react';
 // import { BrowserRouter, Switch, Router, Route } from "react-router-dom";

@@ -1,6 +1,11 @@
 import axios from "axios";
+import http from "../../services/httpService";
+import { apiUrl } from "../../config.json";
 
 import {
+  CREACT_PRODUCT,
+  // FETCH_TRANSACTIONS,
+  // FETCH_SWAPTYPES,
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_FAIL,
@@ -10,6 +15,26 @@ import {
   CATEGORIES_SUCCESS,
   CATEGORIES_FAIL,
 } from "./product.types";
+
+export const apiEndPoint = apiUrl + "/productListing";
+
+//pOst Product saqib
+export const createProduct = (fd, config) => async (dispatch) => {
+  console.warn(">> Create Prod aciotn >> ", fd.getAll("images_want"));
+  console.warn(">> Trans create >> ", fd.get("transaction"), fd);
+  console.log("Config", config);
+  for (var value of fd.values()) {
+    console.warn(value);
+  }
+
+  const response = await http.post(apiEndPoint, fd, config);
+
+  // http.post(apiEndPoint, formData, config);
+  //http://localhost:5000/api/products
+  // api/productListing
+  console.log("create prdoct reducer", response);
+  dispatch({ type: CREACT_PRODUCT, payload: response.data });
+};
 
 //Product List
 export const productListRequest = () => {

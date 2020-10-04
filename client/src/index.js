@@ -1,5 +1,4 @@
-//import "../node_modules/materialize-css/dist/css/materialize.min.css";
-import 'react-app-polyfill/ie11';
+import "react-app-polyfill/ie11";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
@@ -7,8 +6,9 @@ import { Provider } from "react-redux";
 // import { createStore, applyMiddleware } from "redux";
 // import reduxThunk from "redux-thunk";
 import { store } from "./redux/store";
-import './index.css';
+import "./index.css";
 import App from "./components/App";
+import Wizard from "./components/productWizard/wizard";
 //import AdminApp from "./admin/components/adminApp";
 // import reducers from "./reducers";
 // , applyMiddleware(reduxThunk)
@@ -17,8 +17,9 @@ import App from "./components/App";
 ReactDOM.render(
   <Provider store={store}>
     <App />
+    {/* <Wizard /> */}
   </Provider>,
-  
+
   document.querySelector("#root")
 );
 

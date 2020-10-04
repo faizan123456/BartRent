@@ -46,7 +46,7 @@ if (!isProduction) {
 //   })
 // );
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   let allowedOrigins = ["*"]; // list of url-s
   let origin = req.headers.origin;
   if (allowedOrigins.indexOf(origin) > -1) {
@@ -62,17 +62,27 @@ app.use(function(req, res, next) {
 app.use(passport.initialize());
 // app.use(passport.session());
 
-mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(keys.mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 mongoose.set("debug", true);
 
 require("./models/Users");
 require("./services/google-passport");
 require("./services/fb-passport");
 require("./services/local-passport");
-require('./models/proCat');
-require('./models/Product');
+require("./models/gender");
+require("./models/proCat");
+require("./models/Product");
 require("./models/country");
 require("./models/state");
+require("./models/product/Transaction");
+require("./models/product/swapType");
+require("./models/product/productProfile");
+require("./models/product/ProductModel");
+require("./models/product/rentalFrequency");
+
 // require("./models/district");
 require("./models/city");
 
@@ -90,8 +100,8 @@ if (!isProduction) {
     res.json({
       errors: {
         message: err.message,
-        error: err
-      }
+        error: err,
+      },
     });
   });
 }
@@ -102,8 +112,8 @@ app.use((err, req, res, next) => {
   res.json({
     errors: {
       message: err.message,
-      error: {}
-    }
+      error: {},
+    },
   });
 });
 const PORT = process.env.PORT || 5000;

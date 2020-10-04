@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
+import {
+  BrowserRouter,
+  HashRouter,
+  Route,
+  Router,
+  Switch,
+} from "react-router-dom";
 
 import Header from "./Headerdummy";
 import Landing from "./Landing";
@@ -9,7 +15,9 @@ import NotFound from "./notFound";
 import RegisterForm from "./Registration";
 import CurrentUser from "./CurrentUser";
 import ProductForm from "./ProductForm";
+import wizard from "./productWizard/wizard";
 import Products from "./Products";
+import MyAccount from "./MyAccount";
 import { setCurrentUser } from "../redux/user/user.action";
 
 import { connect } from "react-redux";
@@ -21,9 +29,10 @@ import auth from "../services/authService";
 import productDetail from "./productDetail";
 // import AdminApp from './../admin/components/adminApp';
 // import Admin from './../admin/admin';
-import Dashboard from "./../admin/components/dashboard";
-import Admin1 from "./../admin/components/admin1";
+import Dashboard from "../admin/componentsOwn/dashboard";
+
 import Admin from "./../admin/admin";
+import Headerdummy from "./Headerdummy";
 
 // we have two type of tokens
 // 1. via Social login       getCurrent()
@@ -74,28 +83,31 @@ class App extends Component {
   render() {
     // const { isAdmin } = this.props;
 
-    if (this.props.currentUser && this.props.currentUser.isAdmin) {
-      console.log("is Admin", this.props.currentUser.isAdmin);
-      return (
-        <div>
-          <BrowserRouter>
-            <Switch>
-              {/* <Route exact path="/surveys" component={Dasboarde} /> */}
-              {/* <Route exact path="/" component={Dashboard} /> */}
-              <Route exact path="/" component={Admin} />
-              <Route path="/logout" component={Logout} />
-            </Switch>
-          </BrowserRouter>
-        </div>
-      );
-    }
+    // if (this.props.currentUser && this.props.currentUser.isAdmin) {
+    //   console.log("is Admin", this.props.currentUser.isAdmin);
+    //   return (
+    //     <div>
+    //       <HashRouter>
+    //         <Switch>
+    //           {/* <Route exact path="/surveys" component={Dasboarde} /> */}
+    //           {/* <Route exact path="/" component={Dashboard} /> */}
+    //           <Route exact path="/" component={Landing} />
+    //           <Route path="/logout" component={Logout} />
+    //         </Switch>
+    //       </HashRouter>
+    //     </div>
+    //   );
+    // }
     return (
       <div>
         <BrowserRouter>
-          {/* <Header /> */}
+          <Header />
           <Switch>
             {/* <Route exact path="/surveys" component={Dasboarde} /> */}
-            {/* <Route exact path="/" component={Landing} /> */}
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/my-account" component={MyAccount} />
+            <Route exact path="/redux-product-form" component={wizard} />
+
             <Route path="/new-product" component={ProductForm} />
             <Route path="/edit-product/:id" component={ProductForm} />
             <Route exact path="/products" component={Products} />
@@ -112,12 +124,12 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 });
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 

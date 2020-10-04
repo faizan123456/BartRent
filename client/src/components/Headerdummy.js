@@ -18,25 +18,56 @@ class Header extends Component {
       case false:
         return (
           <React.Fragment>
-            <li key="1">
-              <a href="/auth/google" onClick={jwt}>
+            <li className="nav-item" key="01">
+              <Link className="nav-link" to="/redux-product-form">
+                Products
+              </Link>
+            </li>
+            <li className="nav-item" key="1">
+              <Link className="nav-link" to="/products" onClick={jwt}>
+                Products
+              </Link>
+            </li>
+            <li className="nav-item" key="2">
+              <Link className="nav-link" to="/new-product">
+                New Product
+              </Link>
+            </li>
+
+            <li className="nav-item" key="3">
+              <a className="nav-link" href="/auth/google" onClick={jwt}>
                 Login With Google
               </a>
             </li>
-            <li key="2">
-              <a href="/auth/facebook">Login With facebook</a>
+            <li className="nav-item" key="4">
+              <a className="nav-link" href="/auth/facebook">
+                Login With facebook
+              </a>
             </li>
-            <li key="3">
-              <a href="/login">Login</a>
+            <li className="nav-item" key="5">
+              <Link className="nav-link" to="/login">
+                Login
+              </Link>
             </li>
-            <li key="4">
-              <a href="/register">Register</a>
+            <li className="nav-item" key="6">
+              <Link className="nav-link" to="/register">
+                Register
+              </Link>
             </li>
-            <li key="5">
-              <a href="/current">Get Current User</a>
+            <li className="nav-item" key="7">
+              <Link className="nav-link" to="/current">
+                Get Current User
+              </Link>
             </li>
-            <li key="12">
-              <a href="/logout">Logout</a>
+            <li className="nav-item" key="8">
+              <Link className="nav-link" to="/logout">
+                Logout
+              </Link>
+            </li>
+            <li className="nav-item" key="9">
+              <Link className="nav-link" to="/my-account">
+                My Account
+              </Link>
             </li>
           </React.Fragment>
         );
@@ -44,10 +75,10 @@ class Header extends Component {
         return (
           <React.Fragment>
             <li key="12">
-              <a href="/current">Current User</a>
+              <Link to="/current">Current User</Link>
             </li>
             <li key="11">
-              <a href="/api/logout">Logout Social</a>
+              <Link to="/api/logout">Logout Social</Link>
             </li>
           </React.Fragment>
         );
@@ -57,16 +88,17 @@ class Header extends Component {
     // console.log(this.props);
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="collapse navbar-collapse">
+        <div id="navbarSupportedContent" className="collapse navbar-collapse">
           <Link
             to={this.props.auth ? "/surveys" : "/"}
             className="left navbar-brand"
           >
             Barter And Rental Managment
           </Link>
-          <ul id="nav-mobile" className="navbar-nav">
+
+          <ul id="nav-mobile" className="navbar-nav mr-auto">
             {/* <li>
-              <a href="#">SignIn With Google</a>
+              <Link to="#">SignIn With Google</Link>
             </li> */}
             {this.renderContent()}
           </ul>
