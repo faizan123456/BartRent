@@ -51,6 +51,7 @@ class WizardForm extends Component {
   }
   handleSubmit = async (values) => {
     console.log("product values", values);
+    console.log(" c u rrent User", this.props.CurrentUser);
     //map file data here
     const fd = new FormData();
 
@@ -96,6 +97,9 @@ class WizardForm extends Component {
     fd.append("fullAddress", values.fullAddress);
     fd.append("swapValue", values.swapValue);
     fd.append("numberInStock", values.numberInStock);
+    fd.append("propductOwnerId", this.props.CurrentUser);
+    console.log(" c u rrent User", this.props.CurrentUser);
+
     //passs fd  with values to action creator
     console.warn(">> Trans >> ", fd.get("transaction"));
     // console.warn(">> swapType >> ", fd.get("swapType"));
@@ -121,7 +125,7 @@ class WizardForm extends Component {
 
     console.log("Get all", fd.getAll(""));
     await this.props.createProduct(fd, config);
-    window.location = "/";
+    // window.location = "/";
   };
 
   render() {
@@ -193,6 +197,7 @@ const mapStateToProps = (state) => {
       state.form.wizard.values.transaction,
     TransactionTypes: Object.values(state.transaction),
     SwapTypes: Object.values(state.swapType),
+    CurrentUser: state.user.currentUser && state.user.currentUser.Id,
   };
 };
 export default connect(mapStateToProps, { createProduct })(WizardForm);

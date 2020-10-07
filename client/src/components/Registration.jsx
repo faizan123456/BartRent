@@ -31,9 +31,9 @@ class RegisterForm extends Form {
       password: "",
       countryId: "",
       cityId: "",
-      stateId: ""
+      stateId: "",
     },
-    errors: {}
+    errors: {},
   };
 
   populateCountries = async () => {
@@ -55,26 +55,12 @@ class RegisterForm extends Form {
     // await this.populateCities();
   }
   schema = {
-    name: Joi.string()
-      .required()
-      .label("Name"),
-    countryId: Joi.string()
-      .required()
-      .label("Name"),
-    stateId: Joi.string()
-      .required()
-      .label("Name"),
-    cityId: Joi.string()
-      .required()
-      .label("Name"),
-    username: Joi.string()
-      .required()
-      .email()
-      .label("Username"),
-    password: Joi.string()
-      .required()
-      .min(5)
-      .label("Password")
+    name: Joi.string().required().label("Name"),
+    countryId: Joi.string().required().label("Name"),
+    stateId: Joi.string().required().label("Name"),
+    cityId: Joi.string().required().label("Name"),
+    username: Joi.string().required().email().label("Username"),
+    password: Joi.string().required().min(5).label("Password"),
   };
 
   doSubmit = async () => {

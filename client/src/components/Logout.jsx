@@ -8,10 +8,13 @@ import { connect } from "react-redux";
 
 class Logout extends Component {
   componentDidMount() {
+    // console.log("LoggggOUT", this.props);
+    const { history } = this.props;
     auth.logout();
     this.props.discardCurrentUser();
-    console.log("logut Component running");
-    window.location = "/";
+    // console.log("logut Component running");
+    history.push("/");
+    // window.location = "/";
   }
 
   render() {

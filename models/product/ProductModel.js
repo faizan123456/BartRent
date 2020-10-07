@@ -28,6 +28,10 @@ const ProductModelSchema = new Schema({
   postalCode: Number,
   city: String,
   fullAddress: String,
+  productOwner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "users",
+  },
   rentalFrequency: {
     type: rentalFrequencySchema,
   },

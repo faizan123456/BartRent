@@ -405,6 +405,6 @@ const MainContent = () => {
   );
 };
 const mapStateToProps = (state) => {
-  console.log("manin content mapstateToprops", state);
+  // console.log("manin content mapstateToprops", state);
 };
 export default connect(mapStateToProps)(MainContent);

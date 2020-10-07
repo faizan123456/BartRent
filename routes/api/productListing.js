@@ -86,7 +86,7 @@ router.get("/", async (req, res) => {
 router.post("/", upload, async (req, res) => {
   console.log("images...= ", req.files, "======");
 
-  console.log("productListing--->back End---->", req.body.numberInStock);
+  console.log("productListing--->back End---->", req.body);
   const categoryId = req.body.category;
   const categoryName = await productCat.findById(categoryId);
 
@@ -123,7 +123,7 @@ router.post("/", upload, async (req, res) => {
     rentalFrequency: {
       name: req.body.rentalFrequency,
     },
-
+    productOwner: req.body.propductOwnerId,
     transaction: {
       name: req.body.transaction,
     },

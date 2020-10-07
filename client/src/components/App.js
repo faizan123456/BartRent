@@ -33,9 +33,9 @@ import auth from "../services/authService";
 import productDetail from "./productDetail";
 // import AdminApp from './../admin/components/adminApp';
 // import Admin from './../admin/admin';
-import Dashboard from "../admin/componentsOwn/dashboard";
+// import Dashboard from "../admin/componentsOwn/dashboard";
 
-import Admin from "./../admin/admin";
+// import Admin from "./../admin/admin";
 import Headerdummy from "./Headerdummy";
 // import Dashboard from "./../admin/components/dashboard";
 

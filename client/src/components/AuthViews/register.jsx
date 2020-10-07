@@ -3,6 +3,9 @@ import Joi from "joi-browser";
 import Form from "./authCommon/form";
 import * as userService from "../../services/userService";
 import auth from "../../services/authService";
+import { toast } from "react-toastify";
+// import { browserHistory } from "react-router";
+import { withRouter } from "react-router-dom";
 
 class RegisterForm extends Form {
   // {
@@ -44,6 +47,25 @@ class RegisterForm extends Form {
     errors: {},
   };
 
+  validatePasswordWithConfirmPassword = () => {
+    if (
+      this.state.password !== "undefined" &&
+      this.state.cpassword !== "undefined"
+    ) {
+      console.log("first IIFFF");
+      console.log(this.state.password, "=====", this.state.cpassword);
+      if (this.state.data.password != this.state.data.cpassword) {
+        console.log("Nested IIFFF");
+
+        toast.error("Password with Confirm Password Must Be Same");
+        // isValid = false;
+        // errors["password"] = "Passwords don't match.";
+        throw new Error("password with cofirm password not match");
+        // throw ;
+      }
+    }
+  };
+
   populateCountries = async () => {
     const { data: countries } = await userService.getCountries();
     this.setState({ countries });
@@ -74,29 +96,63 @@ class RegisterForm extends Form {
     console.log("city ", this.state.cities);
   }
   schema = {
-    firstname: Joi.string().required().label("First Name"),
-    lastname: Joi.string().required().label("Last Name"),
-    email: Joi.string().email().required().label("Email"),
-    password: Joi.string().required().min(5).label("Password"),
-    cpassword: Joi.string().required().min(5).label("Password"),
+    firstname: Joi.string()
+      .strict()
+      .trim()
+      .regex(/^[a-z\d\-_\s]+$/i)
+      // .alphanum()
+      .min(3)
+      .max(30)
+      .required()
+      .label("First Name"),
+    lastname: Joi.string()
+      .strict()
+      .trim()
+      .regex(/^[a-z\d\-_\s]+$/i)
+      // .alphanum()
+      .min(3)
+      .max(30)
+      .required()
+      .label("Last Name"),
+    email: Joi.string().email().trim().min(3).required().label("Email"),
+    password: Joi.string().required().trim().min(5).label("Password"),
+    cpassword: Joi.string().required().trim().min(5).label("Password"),
     Dob: Joi.date().required().label("Date of birth"),
     genderId: Joi.string().required().label("Gender"),
     countryId: Joi.string().required().label("Country"),
     stateId: Joi.string().required().label("State"),
     cityId: Joi.string().required().label("City"),
-    zip: Joi.string().required().label("Zip Code"),
-    phone: Joi.string().required().label("Phone Number"),
+    zip: Joi.string()
+      .trim()
+      .alphanum()
+      .min(3)
+      .max(30)
+      .required()
+      .label("Zip Code"),
+    phone: Joi.number().min(3).required().label("Phone Number"),
     address: Joi.string().required().label("Postal Address"),
   };
 
   doSubmit = async () => {
     // Call the server
+    const { history } = this.props;
     try {
+      console.log(
+        "match",
+        this.state.data.password,
+        "=====",
+        this.state.data.cpassword
+      );
+      this.validatePasswordWithConfirmPassword();
       console.log("do Submit", this.state.data);
       const response = await userService.register(this.state.data);
       console.log("Register form response obj", response);
       auth.loginWithJwt(response.headers["x-auth-token"]);
+      // history.push("/");
+      // browserHistory.push("/");
+      // this.context.history.push("/");
       window.location = "/";
+      // return <Redirect to={{pathname: "/"}} />;
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
@@ -111,6 +167,7 @@ class RegisterForm extends Form {
   //     console.log("Submited");
   //   };
   render() {
+    console.log("props of register", this.props);
     return (
       <div>
         <h2 className="text-success">Register Here</h2>

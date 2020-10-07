@@ -90,6 +90,7 @@ const renderLogout = () => {
 };
 
 const renderAuth = (props) => {
+  console.warn("render Header", props);
   console.log("start of render auth", props && props.currentUser);
   // if (props.currentUser == null) {
 
@@ -133,6 +134,7 @@ const renderAuth = (props) => {
 
 const Header = (props) => {
   console.log("Header Props", props);
+
   const classes = useStyles();
 
   return (

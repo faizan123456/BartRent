@@ -33,8 +33,8 @@ class LoginForm extends Form {
     }
   }
   schema = {
-    email: Joi.string().email().required().label("Email"),
-    password: Joi.string().required().label("Password"),
+    email: Joi.string().email().trim().required().label("Email"),
+    password: Joi.string().trim().required().label("Password"),
     // isChecked: Joi.any(),
   };
   notify = () => {

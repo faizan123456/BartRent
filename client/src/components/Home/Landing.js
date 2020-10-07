@@ -4,7 +4,10 @@ import Header from "./Header";
 import Footer from "./footer";
 import Slider from "./slider";
 
-const Landing = () => {
+const Landing = (props) => {
+  const { history } = props;
+  console.warn(">>  >landing props", history);
+
   return (
     <div className="App">
       <Header />
