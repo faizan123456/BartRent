@@ -49,7 +49,7 @@ class WizardForm extends Component {
       this.setState({ page: this.state.page - 1 });
     }
   }
-  handleSubmit = (values) => {
+  handleSubmit = async (values) => {
     console.log("product values", values);
     //map file data here
     const fd = new FormData();
@@ -120,7 +120,8 @@ class WizardForm extends Component {
     };
 
     console.log("Get all", fd.getAll(""));
-    this.props.createProduct(fd, config);
+    await this.props.createProduct(fd, config);
+    window.location = "/";
   };
 
   render() {

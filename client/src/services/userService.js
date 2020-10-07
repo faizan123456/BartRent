@@ -4,16 +4,23 @@ const apiEndpoint = apiUrl + "/users";
 
 export async function register(user) {
   // console.log("I am Registered method ", user, apiEndpoint);
-  console.log("user of register method", user.countryId);
+  console.log("user of register method", user);
   const result = await http.post(apiEndpoint, {
     user: {
-      email: user.username,
+      email: user.email,
       password: user.password,
-      name: user.name,
+      cPassword: user.cpassword,
+      firstName: user.firstname,
+      lastName: user.lastname,
       countryId: user.countryId,
       stateId: user.stateId,
-      cityId: user.cityId
-    }
+      cityId: user.cityId,
+      DOB: user.Dob,
+      genderId: user.genderId,
+      phone: user.phone,
+      zip: user.zip,
+      address: user.address,
+    },
   });
   console.log("registred post req", result);
   return result;
@@ -32,4 +39,8 @@ export function getStates(cId) {
 
 export function getCities(sId) {
   return http.get(apiUrl + "/loc/cities/" + sId);
+}
+
+export function getGenders() {
+  return http.get(apiUrl + "/genders/");
 }

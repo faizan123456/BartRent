@@ -1,10 +1,12 @@
 import _ from "lodash";
-import { CREACT_PRODUCT } from "./product.types";
+import { CREACT_PRODUCT, PRODUCT_LIST_REQUEST } from "./product.types";
 
 export default (state = {}, action) => {
   switch (action.type) {
     case CREACT_PRODUCT:
       return { ...state, [action.payload.id]: action.payload };
+    case PRODUCT_LIST_REQUEST:
+      return { ...state, ..._.mapKeys(action.payload, "_id") };
     default:
       return state;
   }

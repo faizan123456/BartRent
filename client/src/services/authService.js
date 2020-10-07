@@ -24,24 +24,28 @@ export async function getCurrent() {
 
 export async function login(email, password) {
   // console.log("I am Login method ", email, password, apiEndpoint);
-  const { data: jwt } = await http.post(
-    apiEndpoint,
-    // { email, password }
-    {
+  try {
+    var { data: jwt } = await http.post(apiEndpoint, {
       user: {
         email: email,
         password: password,
       },
-    }
-  );
-  console.log("LLoogin", jwt.user.token);
+    });
+    console.log("LLoogin", jwt.user.token);
 
-  localStorage.setItem("token", jwt.user.token);
+    // console.log("login res method", jwt);
+    localStorage.setItem("token", jwt.user.token);
+    return jwt.user;
+  } catch (e) {
+    console.log("Catch Error", e);
+  }
+  // return jwt.user;
 }
 //  export function gtoken()
 export function loginWithJwt(jwt) {
   console.log("come into the login method of jwt ", jwt);
   localStorage.setItem("token", jwt);
+  console.log("hahhahahha", localStorage.getItem("token"));
 }
 
 export function logout() {

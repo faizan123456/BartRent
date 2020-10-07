@@ -11,16 +11,16 @@ class Logout extends Component {
     auth.logout();
     this.props.discardCurrentUser();
     console.log("logut Component running");
-    // window.location = "/";
+    window.location = "/";
   }
 
   render() {
-    // return null;
-    return <div>hash</div>;
+    return null;
+    // return <div>hash</div>;
   }
 }
-const mapDispatchToProps = dispatch => ({
-  discardCurrentUser: () => dispatch(discardCurrentUser())
+const mapDispatchToProps = (dispatch) => ({
+  discardCurrentUser: () => dispatch(discardCurrentUser()),
 });
 // export default Logout;
 

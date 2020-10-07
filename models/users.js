@@ -9,14 +9,16 @@ const UsersSchema = new Schema({
   facebookId: String,
   email: String,
   name: String,
+  firstName: String,
+  lastName: String,
   hash: String,
   salt: String,
-  //
-  last_name: String,
-  // gender_id:String,
-  // DOB: DateTime,
-  // alternate_email: String,
-  // phone: String,
+  gender: {
+    type: gender,
+  },
+
+  dOB: Date,
+  phone: String,
   // alternate_phone: String,
   // marriageStatus_id: String,
   // signUpDate: DateTime,
@@ -26,9 +28,9 @@ const UsersSchema = new Schema({
   // user_role_id: String,
 
   isAdmin: Boolean,
-  gender_id: {
-    type: gender,
-  },
+  // gender_id: {
+  //   type: gender,
+  // },
   address: {
     type: new mongoose.Schema({
       country_id: "String",
@@ -61,10 +63,15 @@ UsersSchema.methods.generateJWT = function () {
 
   return jwt.sign(
     {
-      email: this.email,
-      id: this._id,
-      name: this.name,
-      isAdmin: this.isAdmin,
+      Email: this.email,
+      Id: this._id,
+      FirstName: this.firstName,
+      LastName: this.lastName,
+      DOB: this.dOB,
+      Phone: this.phone,
+      Admin: this.isAdmin,
+      Gender: this.gender,
+      Address: this.address,
       exp: parseInt(expirationDate.getTime() / 1000, 10),
     },
     "secret"
@@ -75,7 +82,13 @@ UsersSchema.methods.toAuthJSON = function () {
   return {
     _id: this._id,
     email: this.email,
-    name: this.name,
+    firstName: this.firstName,
+    lastName: this.lastName,
+    gender: this.gender,
+    dOB: this.dOB,
+    phone: this.phone,
+    address: this.address,
+    isAdmin: this.isAdmin,
     // address: this.address.country_id,
     token: this.generateJWT(),
   };

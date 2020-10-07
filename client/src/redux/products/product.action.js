@@ -37,10 +37,12 @@ export const createProduct = (fd, config) => async (dispatch) => {
 };
 
 //Product List
-export const productListRequest = () => {
-  return {
-    type: PRODUCT_LIST_REQUEST,
-  };
+export const productListRequest = () => async (dispatch) => {
+  const productList = await http.get("/api/productListing");
+  dispatch({ type: PRODUCT_LIST_REQUEST, payload: productList.data });
+  // return {
+  //   type: PRODUCT_LIST_REQUEST,
+  // };
 };
 
 export const productListSuccess = (products) => {

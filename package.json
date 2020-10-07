@@ -17,10 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@fullcalendar/interaction": "^5.3.1",
     "body-parser": "^1.19.0",
-    "chart.js": "^2.9.3",
-    "classnames": "^2.2.6",
     "concurrently": "^5.2.0",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
@@ -38,14 +35,7 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
-    "primeflex": "^2.0.0",
-    "primeicons": "^4.0.0",
-    "primereact": "^5.0.0-rc.2",
     "prismjs": "^1.21.0",
-    "quil": "^1.1.30",
-    "react-app-polyfill": "^1.0.6",
-    "redux-form": "^8.3.6",
-    "redux-logger": "^3.0.6",
-    "sass": "^1.26.10"
+    "quil": "^1.1.30"
   }
 }

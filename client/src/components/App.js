@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import {
   BrowserRouter,
   HashRouter,
@@ -8,11 +11,12 @@ import {
 } from "react-router-dom";
 
 import Header from "./Headerdummy";
-import Landing from "./Landing";
-import LoginForm from "./Login";
+import Landing from "./Home/Landing";
+import ProductGrid from "./Home/productGrid/productGrid";
+import LoginForm from "./AuthViews/login";
 import Logout from "./Logout";
 import NotFound from "./notFound";
-import RegisterForm from "./Registration";
+import RegisterForm from "./AuthViews/register";
 import CurrentUser from "./CurrentUser";
 import ProductForm from "./ProductForm";
 import wizard from "./productWizard/wizard";
@@ -33,11 +37,13 @@ import Dashboard from "../admin/componentsOwn/dashboard";
 
 import Admin from "./../admin/admin";
 import Headerdummy from "./Headerdummy";
+// import Dashboard from "./../admin/components/dashboard";
 
 // we have two type of tokens
 // 1. via Social login       getCurrent()
 //2. via Form Isuue is here.   getCurrentUser()
 
+toast.configure();
 class App extends Component {
   state = {};
   constructor(props) {
@@ -87,27 +93,28 @@ class App extends Component {
     //   console.log("is Admin", this.props.currentUser.isAdmin);
     //   return (
     //     <div>
-    //       <HashRouter>
+    //       <BrowserRouter>
     //         <Switch>
     //           {/* <Route exact path="/surveys" component={Dasboarde} /> */}
     //           {/* <Route exact path="/" component={Dashboard} /> */}
-    //           <Route exact path="/" component={Landing} />
+    //           {/* <Route exact path="/" component={Admin} /> */}
     //           <Route path="/logout" component={Logout} />
     //         </Switch>
-    //       </HashRouter>
+    //       </BrowserRouter>
     //     </div>
     //   );
     // }
     return (
       <div>
         <BrowserRouter>
-          <Header />
+          {/* <Header /> */}
           <Switch>
             {/* <Route exact path="/surveys" component={Dasboarde} /> */}
             <Route exact path="/" component={Landing} />
             <Route exact path="/my-account" component={MyAccount} />
             <Route exact path="/redux-product-form" component={wizard} />
 
+            <Route path="/product-grid" component={ProductGrid} />
             <Route path="/new-product" component={ProductForm} />
             <Route path="/edit-product/:id" component={ProductForm} />
             <Route exact path="/products" component={Products} />
