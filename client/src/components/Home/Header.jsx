@@ -237,7 +237,7 @@ const Header = (props) => {
                   fontSize: 16,
                 }}
               >
-                <Link to="/product-grid" className="dropdown-item">
+                <Link to="/product-grid/rent" className="dropdown-item">
                   Go TO Rentals
                 </Link>
                 <div className="dropdown-divider"></div>
@@ -265,7 +265,7 @@ const Header = (props) => {
                   fontSize: 16,
                 }}
               >
-                <Link to="/product-grid" className="dropdown-item">
+                <Link to="/product-grid/barter" className="dropdown-item">
                   Go to Barts
                 </Link>
                 <div className="dropdown-divider"></div>

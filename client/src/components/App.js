@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import {
   BrowserRouter,
   HashRouter,
@@ -10,6 +9,7 @@ import {
   Switch,
 } from "react-router-dom";
 
+import DetailsContent from "../components/Home/ProductDetail/detailsContent";
 import Header from "./Headerdummy";
 import Landing from "./Home/Landing";
 import ProductGrid from "./Home/productGrid/productGrid";
@@ -30,7 +30,8 @@ import { selectCurrentUser } from "../redux/user/user.selector";
 import "./App.css";
 
 import auth from "../services/authService";
-import productDetail from "./productDetail";
+import productDetail from "./Home/ProductDetail/productDetail";
+import MyListings from "./../components/Home/userProfile/myListings";
 // import AdminApp from './../admin/components/adminApp';
 // import Admin from './../admin/admin';
 // import Dashboard from "../admin/componentsOwn/dashboard";
@@ -112,9 +113,14 @@ class App extends Component {
             {/* <Route exact path="/surveys" component={Dasboarde} /> */}
             <Route exact path="/" component={Landing} />
             <Route exact path="/my-account" component={MyAccount} />
-            <Route exact path="/redux-product-form" component={wizard} />
+            <Route path="/my_listings" component={MyListings} />
 
+            <Route exact path="/redux-product-form" component={wizard} />
             <Route path="/product-grid" component={ProductGrid} />
+            {/* <Route path="/product-grid/:id" component={DetailsContent} /> */}
+            <Route path="/product-grid/barter" component={ProductGrid} />
+            <Route path="/product-grid/rent" component={ProductGrid} />
+
             <Route path="/new-product" component={ProductForm} />
             <Route path="/edit-product/:id" component={ProductForm} />
             <Route exact path="/products" component={Products} />

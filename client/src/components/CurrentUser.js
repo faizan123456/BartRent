@@ -47,7 +47,8 @@ import { selectCurrentUser, selectUser } from "../redux/user/user.selector";
 //   }
 // }
 
-const CurrentUser = props => {
+const CurrentUser = (props) => {
+  console.log("current User", props);
   if (props.currentUser) {
     return (
       <div>
@@ -61,7 +62,7 @@ const CurrentUser = props => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
 });
 
 export default connect(mapStateToProps)(CurrentUser);

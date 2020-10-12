@@ -372,7 +372,7 @@ const MainContent = () => {
             style={{ marginTop: 170, marginLeft: 160 }}
           >
             <Link
-              to="/product-grid"
+              to="/product-grid/rent"
               className={classes.portalSelectLink}
               style={{ textDecoration: "none", color: "#fff" }}
             >
@@ -391,7 +391,7 @@ const MainContent = () => {
             style={{ marginTop: 170, marginLeft: 900 }}
           >
             <Link
-              to="/product-grid"
+              to="/product-grid/barter"
               className={classes.portalSelectLink}
               style={{ textDecoration: "none", color: "#fff" }}
             >

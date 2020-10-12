@@ -1,7 +1,8 @@
 import React from "react";
 import img from "./listing_img.png";
 import Card from "../components/common/card";
-const myAccount = () => {
+const myAccount = (props) => {
+  console.log("My Account", props);
   return (
     <div>
       <h1>Account Overview</h1>
@@ -10,11 +11,11 @@ const myAccount = () => {
         logo={img}
         title={"My Listings"}
         btnText={"Create Listings"}
-        btnLink={"/new-product"}
+        btnLink={"/redux-product-form"}
         linksArray={[
           { name: "Active Listings", to: "/products" },
           { name: "Expire Listings", to: "#" },
-          { name: "Draft Listing", to: "#" }
+          { name: "Draft Listing", to: "#" },
         ]}
       />
     </div>

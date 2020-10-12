@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import Box from "@material-ui/core/Box";
 // Grid Card
 import Card from "@material-ui/core/Card";
@@ -34,6 +34,10 @@ import HomeIcon from "@material-ui/icons/Home";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import { Paper } from "@material-ui/core";
+import { connect } from "react-redux";
+import { productListRequest } from "../../../redux/products/product.action";
+import { imageUrl } from "../../../config.json";
+// import {} from ""
 
 const StyledBreadcrumb = withStyles((theme) => ({
   root: {
@@ -84,9 +88,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const GridContent = (props) => {
-  const classes = useStyles();
+// const getProducts = () => {
+//   useEffect(() => {
+//     this.props.productListRequest();
+//     // document.title = `You clicked ${count} times`;
+//   });
+// };
 
+// useEffect((props) => {
+//   props.productListRequest();
+//   // document.title = `You clicked ${count} times`;
+// });
+
+const GridContent = (props) => {
+  let { id } = useParams();
+  console.log("iiiiddd of use Params", id);
+
+  const classes = useStyles();
+  console.log("GGrid Content props", props);
+  useEffect(() => {
+    props.productListRequest();
+    // document.title = `You clicked ${count} times`;
+  }, []);
   const images = [
     {
       path:
@@ -126,6 +149,282 @@ const GridContent = (props) => {
     },
   ];
 
+  const renderAllCards = () => {
+    return (
+      <div className="col-md-8">
+        <Box style={{ marginTop: 30 }}>
+          {props.productList.map((item, index) => (
+            <Link to={`/product/${item._id}`}>
+              <Card
+                key={index}
+                // onClick={() => {
+                //   console.log(item && item._id);
+                // }}
+                style={{
+                  width: 350,
+                  marginBottom: 30,
+                  margin: 7,
+                  display: "inline-block",
+                }}
+              >
+                <CardActionArea>
+                  <CardMedia
+                    className={classes.media}
+                    image={
+                      // item.path
+                      `${imageUrl}/${
+                        item &&
+                        item.productProfile[0] &&
+                        item.productProfile[0].images[0].images[0].filename
+                      }`
+                    }
+                    title="Contemplative Reptile"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {/* Lizard */}
+                      {item && item.productProfile[0].name}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      {/* Lizards are a widespread group of squamate reptiles,
+                            with over 6,000 species, ranging across all
+                            continents except Antarctica */}
+                      {item && item.productProfile[0].desc}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+                <CardActions>
+                  <Button size="small" color="primary">
+                    Share
+                  </Button>
+                  <Button size="small" color="primary">
+                    Learn More
+                  </Button>
+                </CardActions>
+              </Card>
+            </Link>
+          ))}
+        </Box>
+      </div>
+    );
+  };
+  function filterBarts() {
+    var products = props.productList;
+    console.log("GEt prod", products);
+    var arr = [];
+    for (var i = 0; i < products.length; i++) {
+      console.log(
+        "For ....",
+        products[i].transaction &&
+          products[i].transaction.name == "5f723e6f025dca04e0ae6f38"
+      );
+      if (
+        products[i].transaction &&
+        products[i].transaction.name == "5f723e6f025dca04e0ae6f38"
+      ) {
+        console.log("iiiiiiiiFFFFFFFFFFFFf");
+        arr.push(products[i]);
+      }
+      console.log(arr);
+    }
+    return arr;
+  }
+  function filterRents() {
+    var products = props.productList;
+    console.log("GEt prod", products);
+    var arr = [];
+    for (var i = 0; i < products.length; i++) {
+      console.log(
+        "For ....",
+        products[i].transaction &&
+          products[i].transaction.name == "5f723fb0e0607f2f3408d05d"
+      );
+      if (
+        products[i].transaction &&
+        products[i].transaction.name == "5f723fb0e0607f2f3408d05d"
+      ) {
+        console.log("iiiiiiiiFFFFFFFFFFFFf");
+        arr.push(products[i]);
+      }
+      console.log(arr);
+    }
+    return arr;
+  }
+  const renderBartsCard = () => {
+    // console.log(,,filterBarts());
+    return (
+      <div className="col-md-8">
+        <Box style={{ marginTop: 30 }}>
+          {filterBarts().map((item, index) => (
+            <React.Fragment>
+              {/* {console.log("Fragment", item && item.transaction.name)} */}
+              {/* {item && item.transaction.name === "5f723e6f025dca04e0ae6f38"} */}
+              <Link to={`/product/${item._id}`}>
+                <Card
+                  key={index}
+                  // onClick={() => {
+                  //   console.log(item && item._id);
+                  // }}
+                  style={{
+                    width: 350,
+                    marginBottom: 30,
+                    margin: 7,
+                    display: "inline-block",
+                  }}
+                >
+                  <CardActionArea>
+                    <CardMedia
+                      className={classes.media}
+                      image={
+                        // item.path
+                        `${imageUrl}/${
+                          item &&
+                          item.productProfile[0] &&
+                          item.productProfile[0].images[0].images[0].filename
+                        }`
+                      }
+                      title="Contemplative Reptile"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {/* Lizard */}
+                        {item && item.productProfile[0].name}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                      >
+                        {/* Lizards are a widespread group of squamate reptiles,
+                            with over 6,000 species, ranging across all
+                            continents except Antarctica */}
+                        {item && item.productProfile[0].desc}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions>
+                    <Button size="small" color="primary">
+                      Share
+                    </Button>
+                    <Button size="small" color="primary">
+                      Learn More
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Link>
+            </React.Fragment>
+          ))}
+        </Box>
+      </div>
+    );
+  };
+
+  const renderRentalCard = () => {
+    // console.log(,,filterBarts());
+    return (
+      <div className="col-md-8">
+        <Box style={{ marginTop: 30 }}>
+          {filterRents().map((item, index) => (
+            <React.Fragment>
+              {/* {console.log("Fragment", item && item.transaction.name)} */}
+              {/* {item && item.transaction.name === "5f723e6f025dca04e0ae6f38"} */}
+              <Link to={`/product/${item._id}`}>
+                <Card
+                  key={index}
+                  // onClick={() => {
+                  //   console.log(item && item._id);
+                  // }}
+                  style={{
+                    width: 350,
+                    marginBottom: 30,
+                    margin: 7,
+                    display: "inline-block",
+                  }}
+                >
+                  <CardActionArea>
+                    <CardMedia
+                      className={classes.media}
+                      image={
+                        // item.path
+                        `${imageUrl}/${
+                          item &&
+                          item.productProfile[0] &&
+                          item.productProfile[0].images[0].images[0].filename
+                        }`
+                      }
+                      title="Contemplative Reptile"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {/* Lizard */}
+                        {item && item.productProfile[0].name}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                      >
+                        {/* Lizards are a widespread group of squamate reptiles,
+                            with over 6,000 species, ranging across all
+                            continents except Antarctica */}
+                        {item && item.productProfile[0].desc}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions>
+                    <Button size="small" color="primary">
+                      Share
+                    </Button>
+                    <Button size="small" color="primary">
+                      Learn More
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Link>
+            </React.Fragment>
+          ))}
+        </Box>
+      </div>
+    );
+  };
+
+  const SelectViewForGrid = () => {
+    // const { location } = props;
+    if (props.location.pathname == "/product-grid/barter") {
+      console.log("Select View i am inside if ");
+      return renderBartsCard();
+    }
+    if (props.location.pathname == "/product-grid/rent") {
+      console.log("Select View i am inside if ");
+      return renderRentalCard();
+    }
+    return renderAllCards();
+  };
+
+  console.log(
+    "images.....",
+    props.productList[1] &&
+      props.productList[1].productProfile[0] &&
+      props.productList[1].productProfile[0].images[0].images[0].filename
+  );
+
+  // props.productList[1] &&
+  // props.productList[1].productProfile[0]
+  console.log(
+    "title",
+    props.productList[1] && props.productList[1].productProfile[0].name
+  );
+  console.log(
+    "Description",
+    props.productList[1] && props.productList[1].productProfile[0].desc
+  );
+  console.log("For history ", props);
+  // const { prouctsList } = props;
+  console.log("filterBartsCard", filterBarts());
   return (
     <React.Fragment>
       <div
@@ -161,80 +460,11 @@ const GridContent = (props) => {
 
       <div className="container bg-light" style={{ marginTop: 50 }}>
         <div className="row">
-          <div className="col-md-8">
-            <Box style={{ marginTop: 30 }}>
-              {images.map((item, index) => (
-                <div className="row">
-                  <div className="col-md-6">
-                    <Card key={index} style={{ width: 350, marginBottom: 10 }}>
-                      <CardActionArea>
-                        <CardMedia
-                          className={classes.media}
-                          image={item.path}
-                          title="Contemplative Reptile"
-                        />
-                        <CardContent>
-                          <Typography gutterBottom variant="h5" component="h2">
-                            Lizard
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            component="p"
-                          >
-                            Lizards are a widespread group of squamate reptiles,
-                            with over 6,000 species, ranging across all
-                            continents except Antarctica
-                          </Typography>
-                        </CardContent>
-                      </CardActionArea>
-                      <CardActions>
-                        <Button size="small" color="primary">
-                          Share
-                        </Button>
-                        <Button size="small" color="primary">
-                          Learn More
-                        </Button>
-                      </CardActions>
-                    </Card>
-                  </div>
-                  <div className="col-md-6">
-                    <Card key={index} style={{ width: 350, marginBottom: 30 }}>
-                      <CardActionArea>
-                        <CardMedia
-                          className={classes.media}
-                          image={item.path}
-                          title="Contemplative Reptile"
-                        />
-                        <CardContent>
-                          <Typography gutterBottom variant="h5" component="h2">
-                            Lizard
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            component="p"
-                          >
-                            Lizards are a widespread group of squamate reptiles,
-                            with over 6,000 species, ranging across all
-                            continents except Antarctica
-                          </Typography>
-                        </CardContent>
-                      </CardActionArea>
-                      <CardActions>
-                        <Button size="small" color="primary">
-                          Share
-                        </Button>
-                        <Button size="small" color="primary">
-                          Learn More
-                        </Button>
-                      </CardActions>
-                    </Card>
-                  </div>
-                </div>
-              ))}
-            </Box>
-          </div>
+          {SelectViewForGrid()}
+          {/* {switch(props.hitory)} */}
+          {/* {renderAllCards()} */}
+          {/* {renderBartsCard()} */}
+          {/* {renderRentalCard()} */}
           <div className="col-md-4">
             <Box position="static" style={{ marginTop: 30, marginRight: 10 }}>
               <Paper elevation={0}>
@@ -311,5 +541,27 @@ const GridContent = (props) => {
     </React.Fragment>
   );
 };
+const mapStateToProps = (state) => {
+  console.log(state);
+  // let value = state.products && state.products.productProfile;
+  // const ans = Object.values(state.products);
+  // console.log(ans)
+  // console.log(
+  //   "values",
+  //   ans[1] &&
+  //     ans[1].productProfile &&
+  //     ans[1].productProfile[0] &&
+  //     ans[1].productProfile[0].images[0] &&
+  //     ans[1].productProfile[0].images[0].images[0] &&
+  //     ans[1].productProfile[0].images[0].images[0].filename
 
-export default GridContent;
+  //   //  &&
+  //   // ans[1].productProfile[0].images.images
+  //   //  &&
+  //   // ans[1].productProfile[0]
+  // );
+  return {
+    productList: Object.values(state.products),
+  };
+};
+export default connect(mapStateToProps, { productListRequest })(GridContent);

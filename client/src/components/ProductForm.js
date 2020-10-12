@@ -112,6 +112,7 @@ class ProductForm extends Form {
   };
 
   render() {
+    console.log("HHHHistory", this.props);
     return (
       <div className="container">
         <h2 className="text-info">
