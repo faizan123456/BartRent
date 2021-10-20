@@ -1,1 +1,0 @@
-export const FETCH_SWAPTYPES = "FETCH_SWAPTYPES";
